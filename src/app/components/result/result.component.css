@@ -1,0 +1,87 @@
+.classTD{
+    min-height: 62px;
+    height: 70px;
+}
+.textResult{
+    float: left;
+    color: white;
+    margin-right: 15px;
+    margin-top:10px;
+}
+.result_score{
+    margin-top:8px;
+}
+.result_score_{
+    margin-top:12px;
+}
+.date_picker{
+    width: 250px;
+    margin: 15px
+}
+.icon_hl{
+    width: 80px;
+    margin-top:8px;
+}
+.div_score{
+    float: left;
+    background-image: url('/assets/images/icon/score.png'); 
+    background-size: 100% 100%;
+    width: 76px;
+    height: 34px;
+    margin-top: 6px;
+    text-align: center;
+}
+.div_score_lose{
+    float: left;
+    background-image: url('/assets/images/icon/lose2.png'); 
+    background-size: 100% 100%;
+    width: 76px;
+    height: 34px;
+    margin-top: 8px;
+    text-align: center;
+}
+
+.btn_{
+    overflow: hidden;
+    text-align: center;
+}
+
+.btn_ img{
+    width: 265px;
+}
+.scan_td{
+    height: 70px;
+}
+.table_font_size{
+    font-size: 12px;
+}
+
+@media (min-width: 768px){
+    .table_font_size{
+        font-size: 18px;
+    }
+    .icon_hl{
+        width: 100px;
+    }
+    .result_score{
+        margin-top:6px;
+    }
+    .result_score_{
+        margin-top:10px;
+    }
+    .div_score{
+        float: left;
+        background-image: url('/assets/images/icon/score.png'); 
+        background-size: 100% 100%;
+        width: 100px;
+        height: 38px;
+        text-align: center;
+    }
+    .div_score_lose{
+        float: left;
+        background-size: 100% 100%;
+        width: 100px;
+        height: 38px;
+        text-align: center;
+    }
+}

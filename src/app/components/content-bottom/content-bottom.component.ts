@@ -11,10 +11,7 @@ export class ContentBottomComponent implements OnInit {
 
   ngOnInit() {
     //call service
-    this.todoServcie.getTodoList(2).subscribe((response)=>{
-      
-      this.todoList = response;
-    });
+    
   }
 
 }

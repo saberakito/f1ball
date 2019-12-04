@@ -22,10 +22,7 @@ export class RegisterComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.id =  params['id'];
      // this.id =  params['id'];
-      this.todoServcie.getDataPage("register").subscribe((response)=>{
-        this.data_title = response.data.menu_name;
-        this.data_deatail = response.data.menu_detail;
-      });
+     
     });
     //call service
     // this.todoServcie.getTextRegister().subscribe((response)=>{
@@ -35,14 +32,7 @@ export class RegisterComponent implements OnInit {
     
   }
   onSubmit(form: NgForm): void {
-    this.todoServcie.saveMember(form.value).subscribe(data=>{
-     if(data.success){
-      alert("รอการตอบกลับจากพนักงาน");
-     }else{
-      alert("กรุณาลองอีกครั้ง");
-     }
-      
-    });
+   
   }
 
 }

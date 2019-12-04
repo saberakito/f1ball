@@ -22,12 +22,7 @@ sub:any;
     this.sub = this.route.params.subscribe(params => {
       this.id =  params['id'].split("-")[1];
      // this.id =  params['id'];
-      this.todoServcie.getDetailNews(this.id).subscribe((response)=>{
-        this.adjust_page_title = response[0].adjust_page_title;
-        this.adjust_page_image_url = 'upload/files/'+response[0].adjust_page_image_name+'.'+response[0].adjust_page_image_type;
-        this.adjust_page_description = response[0].adjust_page_description;
-        this.todoNewsDetail = response[0];
-      });
+    
     });
   }
 

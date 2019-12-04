@@ -10,10 +10,7 @@ export class HowtoplayComponent implements OnInit {
   constructor(private todoServcie:TodoService) { }
 
   ngOnInit() {
-    this.todoServcie.getTextHowtoplay().subscribe((response)=>{
-      //console.log(response.data);
-      this.todoHowtoplayText = response.data.howtoplay_text_detail;
-  });
+    
   }
 
 }

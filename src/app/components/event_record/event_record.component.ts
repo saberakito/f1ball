@@ -18,11 +18,7 @@ export class Event_recordComponent implements OnInit {
   ngOnInit() {
     //call service
     
-    this.todoServcie.getTextContext().subscribe((response)=>{
-        //this.sanitizedURL = this.sanitizer.bypassSecurityTrustResourceUrl(response.data.contact_text_detail)['changingThisBreaksApplicationSecurity']; 
-        //console.log(response.data.contact_text_detail);
-        this.todoContactText = response.data.contact_text_detail;
-    });
+   
   }
 
 }

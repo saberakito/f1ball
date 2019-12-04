@@ -50,9 +50,10 @@ export class AppComponent {
   ngOnInit() {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        var check_url = event.url.split("/")[2];
-        if(check_url=='register'||check_url=='deposit'||check_url=='withdraw'){
+        var check_url = event.url.split("/")[1];
+        if(check_url=='game'){
           this.showHeader = false;
+          $('body').css('background','unset');
          // this.class_checkShow = "content_100";
         }else{
           this.showHeader = true;
@@ -64,19 +65,10 @@ export class AppComponent {
       }
     });
 
-    this.todoServcie.getSetting().subscribe((response)=>{
-      // this.website_title = response.data.website_title;
-      // $('title').html(this.website_title);
-    });
+    
    
     AOS.init();
-    this.todoServcie.getPopup().subscribe((response)=>{
-     this.adjust_page_image_name = response.adjust_page_image_name;
-     this.adjust_page_image_type = response.adjust_page_image_type
-     if(this.adjust_page_image_name==''||this.adjust_page_image_name==null){
-      this.close_popup = '1';
-     }
-    });
+   
     var close_popup_value =  this.cookie.get("close_popup");
     if(close_popup_value=='1'){
       this.close_popup = '1';

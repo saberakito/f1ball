@@ -9,18 +9,126 @@ interface registerData{
   register_text_detail:string,
   type:string
 }
-interface myData{
-  success:boolean,
-  message:string
-}
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
-  loggedInStatus = true;
+
   constructor(private http:Http, private http2: HttpClient) { }
 
+  //private local = window.location.origin;
+  private local = "http://localhost:80";
+  //private local = "http://betufa55.com";
+
+  getCredit(member_id){
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"getCredit",member_id:member_id}).pipe(map((res)=>res.json()));
+  }
+  getHandicap(){
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"getHandicap"}).pipe(map((res)=>res.json()));
+  }
+  getHandicap_result_from_date(date){
+      
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"getHandicap_result_from_date",date:date}).pipe(map((res)=>res.json()));
+  }
+  getHandicap_member_id(member_id){
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"getHandicap_member",member_id:member_id}).pipe(map((res)=>res.json()));
+  }
+
+  getHandicap_by_id(member_id,id){
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"getHandicap_by_id",member_id:member_id,id:id}).pipe(map((res)=>res.json()));
+  }
+
+
+  getHandicap_game(member_id){
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"getHandicap_game",member_id:member_id}).pipe(map((res)=>res.json()));
+  }
+
+  getHandicap_game_play(member_id){
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"getHandicap_game_play",member_id:member_id}).pipe(map((res)=>res.json()));
+  }
+
+  getHandicapFromDate(data,member_id){
+      
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"getHandicapFromDate",date:data,member_id:member_id}).pipe(map((res)=>res.json()));
+  }
+  getHandicapGraph(){
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"getHandicapGraph"}).pipe(map((res)=>res.json()));
+  }
+
+ 
+  
+
+  saveHandicap(id,member_id){
+      
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http2.post<myData>(this.local+'/api/dataAdjustSport.php',{ac:"saveHandicap",hd_id:id,member_id:member_id});
+  }
+
+  saveDataGame(m_id,data){
+      
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http2.post<myData>(this.local+'/api/dataAdjustSport.php',{ac:"saveDataGame",m_id:m_id,data:data});
+  }
+
+  getDataGame(m_id){
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"getDataGame",m_id:m_id}).pipe(map((res)=>res.json()));
+  }
+
+
+  
+
+  saveMember(member_code,member_code_tran){
+      
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http2.post<myData>(this.local+'/api/dataAdjustSport.php',{ac:"saveMember",member_code:member_code,member_code_tran:member_code_tran});
+  }
+
+  autoLogin(scode){
+      
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http2.post<myData>(this.local+'/api/dataAdjustSport.php',{ac:"autoLogin",scode:scode});
+  }
+
+  getChart(){
+      
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return true;
+  }
+
+  updateCredit(member_code,member_code_tran){
+    return this.http2.post<myData>(this.local+'/api/dataAdjustSport.php?ac=updateCredit',{mem_code:member_code,mem_codeTrans:member_code_tran});
+  }
+  updateCreditSave(member_code,member_code_tran,object){
+    return this.http2.post<myData>(this.local+'/api/dataAdjustSport.php?ac=updateCreditSave',{mem_code:member_code,mem_codeTrans:member_code_tran,creditArray:object});
+  }
+
+  getDateGame_played(m_id){
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"getDateGame_played",m_id:m_id}).pipe(map((res)=>res.json()));
+  }
+
+  check_play(m_id){
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"check_play",m_id:m_id}).pipe(map((res)=>res.json()));
+  }
+
+  checkWinGame(m_id,date){
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"checkWinGame",m_id:m_id,date_data:date}).pipe(map((res)=>res.json()));
+  }
+
+  loggedInStatus = false;
   setLoggedIn(value: boolean){
     localStorage.setItem("login", 'success');
     this.loggedInStatus = value;
@@ -28,115 +136,29 @@ export class TodoService {
   get isLoggedIn(){
     return this.loggedInStatus
   }
-
-private local = window.location.origin;
-//private local = "http://localhost:80";
-//private local = "http://betufa55.com"; 
-
-  getTodoList(data){
-    if(data==1){
-      return this.http.get(this.local+"/api/getNews.php?type=1&ac=all").pipe(map((res)=>res.json()));
-    }else{
-      return this.http.get(this.local+"/api/getNews.php?type=1").pipe(map((res)=>res.json()));
-    }
-  }
-  getDetailNews(id){
-    return this.http.get(this.local+"/api/dataAdjust.php?ac=getDetailNew&id="+id).pipe(map((res)=>res.json()));
+  ValidateUser(username,password){
+   // return this.http2.get<myData>('http://wbox.xyz/apis/memlogin.z?mem_code='+username+'&mem_codeTrans='+password+'&fbclid=IwAR25LK6mq1AJT099GRF7TzxAXk1be7eBOcZ1Me-R9yMrhajasm4kM3IYz2w');
+   // return this.http2.post<myData>(this.local+'/api/dataAdjustSport.php?ac=loginMember',{username:username,password:password});
+   return this.http2.post<myData>(this.local+'/api/dataAdjustSport.php?ac=checkMember',{mem_code:username,mem_codeTrans:password});
   }
 
-  getTextRegister(){
-    //return this.http.get("http://conner888.com/api/dataAdjust.php?ac=getRegisterText").pipe(map((res)=>res.json()));
-    return this.http.get(this.local+"/api/dataAdjust.php?ac=getRegisterText").pipe(map((res)=>res.json()));
-  }
-
-  getTextContext(){
-    //return this.http.get("http://conner888.com/api/dataAdjust.php?ac=getContactText").pipe(map((res)=>res.json()));
-    return this.http.get(this.local+"/api/dataAdjust.php?ac=getContactText").pipe(map((res)=>res.json()));
-  }
-
-  getTextPromotion(){
-    return this.http.post(this.local+"/api/dataAdjust.php",{ac:"getPromotion",type:2}).pipe(map((res)=>res.json()));
-  }
-
-  getTextHowtoplay(){
-    return this.http.get(this.local+"/api/dataAdjust.php?ac=getHowtoplayText").pipe(map((res)=>res.json()));
-  }
- 
-  getMenu(){
-    // return this.http.post<adjustpageData>(this.host_config+'/api/dataAdjust.php',{ac:"saveAdjustPage",data:data});
-    return this.http.post(this.local+'/api/dataAdjust.php',{ac:"getMenu",type:'1'}).pipe(map((res)=>res.json()));;
-  }
-  getDataPage(data){
-      return this.http.post(this.local+"/api/dataAdjust.php",{ac:"getDataPage",data:data}).pipe(map((res)=>res.json()));
-  }
-
-  getSlide(){
-    // return this.http.post<adjustpageData>(this.host_config+'/api/dataAdjust.php',{ac:"saveAdjustPage",data:data});
-    return this.http.post(this.local+'/api/dataAdjust.php',{ac:"getSlide",type:'1'}).pipe(map((res)=>res.json()));;
-  }
+  ValidateUserLink(scode:string){
+    // return this.http2.get<myData>('http://wbox.xyz/apis/memlogin.z?mem_code='+username+'&mem_codeTrans='+password+'&fbclid=IwAR25LK6mq1AJT099GRF7TzxAXk1be7eBOcZ1Me-R9yMrhajasm4kM3IYz2w');
+    // return this.http2.post<myData>(this.local+'/api/dataAdjustSport.php?ac=loginMember',{username:username,password:password});
+    return this.http2.post<myData>(this.local+'/api/dataAdjustSport.php',{ac:"checkMemberLink",scode:scode});
+   }
   
-  getPopup(){
-    // return this.http.post<adjustpageData>(this.host_config+'/api/dataAdjust.php',{ac:"saveAdjustPage",data:data});
-    return this.http.post(this.local+'/api/dataAdjust.php',{ac:"getPopup"}).pipe(map((res)=>res.json()));;
-  }
-
-  getSetting(){
-    return this.http.post(this.local+'/api/dataAdjust.php',{ac:"getSetting"}).pipe(map((res)=>res.json()));
-  }
-  saveMember(data:string){
-    return this.http2.post<contactData>(this.local+'/api/dataAdjust.php',{ac:"saveMember",data:data});
-  }
-
-  
-  ValidateUser(username:string,password:string){
-   return this.http2.post<myData>(this.local+'/api/dataAdjust.php?ac=login',{username:username,password:password});
-    //return {success:true};
-  }
-
-
-
-
-
-
-  saveLink(data,link){
-    return this.http2.post<contactData>(this.local+'/api_nubshare/dataAdjust.php',{ac:"save_link",data:data,link:link});
-  }
-  getDataLink(link){
-    return this.http2.get<contactData>('http://localhost:3000/getContent/'+encodeURIComponent(link),{});
-  }
-  getDataLike(link,data_id){
-    return this.http2.post<contactData>('http://localhost:3000/getLike/'+encodeURIComponent(link),{data_id:data_id});
-  }
-  getDataLike_from_mysql(data_id){
-    return this.http2.post(this.local+'/api_nubshare/dataAdjust.php',{ac:"get_user_like",data_id:data_id});
-  }
-  saveDataLike(data_id,data_array_user_like){
-    return this.http2.post<contactData>(this.local+'/api_nubshare/dataAdjust.php',{ac:"save_like",data_id:data_id,data_array_user_like:data_array_user_like});
-  }
-  saveUserWin(data_id,user_id,user_name){
-    return this.http2.post<contactData>(this.local+'/api_nubshare/dataAdjust.php',{ac:"save_user_win",data_id:data_id,user_id:user_id,user_name:user_name});
-  }
-  getUserWin(data_id){
-    return this.http2.post<contactData>(this.local+'/api_nubshare/dataAdjust.php',{ac:"get_user_win",data_id:data_id});
-  }
+}
+interface myData{
+  data:string,
+  success:any,
+  message:string,
+  result:any
 }
 interface contactData{
   success:boolean,
-  post_message:string,
-  dp_id:string,
-  data_id:string,
-  image_link:string,
-  all_likes:string,
-  image_post:string,
-  all_comments:string,
-  dp_name_page:string,
-  dp_link_like:string,
-  data_user_like:string,
   message:string,
   data:string,
   contact_text_detail:string,
-  type:string,
-  status_link:boolean
+  type:string
 }
-
-

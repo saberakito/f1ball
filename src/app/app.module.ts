@@ -36,18 +36,27 @@ import { regCompleteComponent } from './components/regComplete/regComplete.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { loginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { Event_recordComponent } from './components/event_record/event_record.component';
 import { Manage_dataComponent } from './components/manage_data/manage_data.component';
 
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { ColorSketchModule } from 'ngx-color/sketch';
 
-import { SlickCarouselModule } from 'ngx-slick-carousel';  
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+// import { ColorSketchModule } from 'ngx-color/sketch';
+
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { ResultComponent } from './components/result/result.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';  
+
+
+import { ChartModule } from 'angular2-chartjs';
+import { ContactComponent } from './components/contact/contact.component';
+import {ProgressBarModule} from "angular-progress-bar";
+import { GameComponent } from './components/game/game.component'
 const appRoutes:Routes = [
   
   {path:"home", component:HomeComponent, canActivate:[AuthGuard]},
-  {path:"login", component:loginComponent, canActivate:[AuthGuard]},
+  {path:"login", component:LoginComponent, canActivate:[AuthGuard]},
   {path:"event_record", component:Event_recordComponent, canActivate:[AuthGuard]},
   {path:"manage_data", component:Manage_dataComponent, canActivate:[AuthGuard]},
   {path:"manage_data/:id", component:Manage_dataComponent, canActivate:[AuthGuard]},
@@ -60,6 +69,10 @@ const appRoutes:Routes = [
   {path:"contact", component:ContactusComponent, canActivate:[AuthGuard]},
   {path:"news", component:NewsComponent, canActivate:[AuthGuard]},
   {path:"regComplete", component:regCompleteComponent, canActivate:[AuthGuard]},
+  {path:"dashboard", component:DashboardComponent, canActivate:[AuthGuard]},
+  {path:"result", component:ResultComponent, canActivate:[AuthGuard]},
+  {path:"game", component:GameComponent, canActivate:[AuthGuard]},
+
   {path:"news", children:[
     {path:"news-detail/:id", component:NewsDetailComponent, canActivate:[AuthGuard]}
   ]},
@@ -87,7 +100,7 @@ const appRoutes:Routes = [
     NavbarComponent,
     MenuComponent,
     HomeComponent,
-    loginComponent,
+    LoginComponent,
     Event_recordComponent,
     Manage_dataComponent,
     ContentBottomComponent,
@@ -98,12 +111,19 @@ const appRoutes:Routes = [
     ResultfootballComponent,
     sanitizeHtmlPipe,
     PageComponent,
-    PromotionDetailComponent
+    PromotionDetailComponent,
+    ResultComponent,
+    DashboardComponent,
+    ContactComponent,
+    GameComponent
   ],
   imports: [
+    ChartModule,
+    ProgressBarModule,
+   
     BrowserModule,
     FormsModule,
-    ColorSketchModule,
+    // ColorSketchModule,
     MDBBootstrapModule,
     ReactiveFormsModule,
     AppRoutingModule,

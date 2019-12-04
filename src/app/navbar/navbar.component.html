@@ -1,27 +1,24 @@
+
+
+
 <div class="topnav" id="myTopnav">
-            <ng-container *ngFor="let menu of menus; index as i; first as isFirst;let l = count">
-                    <div class="link_nav cal_{{l+2}}" *ngIf="i==0">
-                        <a [routerLinkActive]="['active-menu']"  [routerLinkActiveOptions]="{exact:true}" routerLink="/home" class=" links active ">หน้าแรก</a>
-                    </div>
-                    <div class="link_nav cal_{{l+2}}">
-                        <a  [routerLinkActiveOptions]="{exact:true}" [routerLinkActive]="['active-menu']" routerLink="/page/{{menu.menu_route}}" class=" links active ">{{menu.menu_name}}</a>
-                    </div>
-                    <div class="link_nav cal_{{l+2}}"  *ngIf="i==4">
-                        <a  [routerLinkActiveOptions]="{exact:true}" [routerLinkActive]="['active-menu']" routerLink="/promotion" class=" links active ">โปรโมชั่น</a>
-                    </div>
+        <div _ngcontent-jft-c1="" class="container">
+            <ng-container *ngIf="member_name!=null&&member_name!=''">
+                <a _ngcontent-jft-c1="" class="links active cal_4 active-menu" routerLink="/home" ng-reflect-router-link="/home" ng-reflect-router-link-active-options="[object Object]" ng-reflect-router-link-active="active-menu" ><img _ngcontent-jft-c1="" class="icon_link" src="/assets/images/icon/icon1.png"> หน้าหลัก </a>
+                <a _ngcontent-jft-c1="" class=" links cal_4" routerLink="/result" ng-reflect-router-link="/result" ng-reflect-router-link-active-options="[object Object]" ng-reflect-router-link-active="active-menu" ><img _ngcontent-jft-c1="" class="icon_link" src="/assets/images/icon/icon2.png"> ผลบอล </a>
+                <a _ngcontent-jft-c1="" class=" links cal_4" routerLink="/dashboard" ng-reflect-router-link="/dashboard" ng-reflect-router-link-active-options="[object Object]" ng-reflect-router-link-active="active-menu" ><img _ngcontent-jft-c1="" class="icon_link" src="/assets/images/icon/icon3.png"> ผลกำไร </a>
+                <a _ngcontent-jft-c1="" class=" links cal_4" routerLink="/contact" ng-reflect-router-link="/contact" ng-reflect-router-link-active-options="[object Object]" ng-reflect-router-link-active="active-menu" ><img _ngcontent-jft-c1="" class="icon_link" src="/assets/images/icon/icon4.png"> ติดต่อเรา </a>
+                <a _ngcontent-jft-c1="" class="icon" href="javascript:void(0);" onclick="myFunction()" ng-reflect-router-link-active-options="[object Object]" ng-reflect-router-link-active="active-menu"><i _ngcontent-jft-c1="" class="fa fa-bars"></i></a>
             </ng-container>
-            
-            <!-- <ng-container *ngIf='login_status_check!="1"'>
-                <div class="link_nav cal_4">
-                    <a [routerLinkActive]="['active-menu']"  [routerLinkActiveOptions]="{exact:true}" routerLink="/promotion" class=" links active ">ค่าบริการ</a>
-                </div>
-                <div class="link_nav cal_4">
-                    <a [routerLinkActive]="['active-menu']"  [routerLinkActiveOptions]="{exact:true}" routerLink="/register" class=" links active ">สมัครสมาชิก</a>
-                </div>
-                <div class="link_nav cal_4">
-                    <a [routerLinkActive]="['active-menu']"  [routerLinkActiveOptions]="{exact:true}" routerLink="/login" class=" links active ">เข้าสู่ระบบ</a>
-                </div>
-            </ng-container> -->
+            <ng-container *ngIf="member_name==null||member_name==''">
+                <a _ngcontent-jft-c1="" class="links active cal_5 active-menu" routerLink="/home" ng-reflect-router-link="/home" ng-reflect-router-link-active-options="[object Object]" ng-reflect-router-link-active="active-menu" ><img _ngcontent-jft-c1="" class="icon_link" src="/assets/images/icon/icon1.png"> หน้าหลัก </a>
+                <a _ngcontent-jft-c1="" class=" links cal_5" routerLink="/result" ng-reflect-router-link="/result" ng-reflect-router-link-active-options="[object Object]" ng-reflect-router-link-active="active-menu" ><img _ngcontent-jft-c1="" class="icon_link" src="/assets/images/icon/icon2.png"> ผลบอล </a>
+                <a _ngcontent-jft-c1="" class=" links cal_5" routerLink="/dashboard" ng-reflect-router-link="/dashboard" ng-reflect-router-link-active-options="[object Object]" ng-reflect-router-link-active="active-menu" ><img _ngcontent-jft-c1="" class="icon_link" src="/assets/images/icon/icon3.png"> ผลกำไร </a>
+                <a _ngcontent-jft-c1="" class=" links cal_5" routerLink="/contact" ng-reflect-router-link="/contact" ng-reflect-router-link-active-options="[object Object]" ng-reflect-router-link-active="active-menu" ><img _ngcontent-jft-c1="" class="icon_link" src="/assets/images/icon/icon4.png"> ติดต่อเรา </a>
+                <a _ngcontent-jft-c1="" class=" links cal_5" routerLink="/login" ng-reflect-router-link="/login" ng-reflect-router-link-active-options="[object Object]" ng-reflect-router-link-active="active-menu"><img _ngcontent-jft-c1="" class="icon_login" src="/assets/images/icon/login.png"></a>
+                <a _ngcontent-jft-c1="" class="icon" href="javascript:void(0);" onclick="myFunction()" ng-reflect-router-link-active-options="[object Object]" ng-reflect-router-link-active="active-menu"><i _ngcontent-jft-c1="" class="fa fa-bars"></i></a>
+            </ng-container>
+        </div>
             
       <a [routerLinkActive]="['active-menu']" [routerLinkActiveOptions]="{exact:true}" href="javascript:void(0);" class="icon" onclick="myFunction()">
           <i class="fa fa-bars"></i>
@@ -29,9 +26,18 @@
   </div>
 
   <div class="topnav_mobile" id="myTopnav">
-      <ng-container *ngFor="let menu of menus; index as i; first as isFirst;let l = count">
-          <a [routerLinkActive]="['active-menu']" *ngIf="i==0" [routerLinkActiveOptions]="{exact:true}" routerLink="/home" class="btn_mobile btn  links active cal_{{l+2}}">หน้าหลัก</a>
-          <a [routerLinkActive]="['active-menu']" [routerLinkActiveOptions]="{exact:true}" routerLink="/page/{{menu.menu_route}}" class="btn_mobile btn  width_{{i+1}} links active cal_{{l+2}}">{{menu.menu_name}}</a>
-          <a [routerLinkActive]="['active-menu']" *ngIf="i==2" [routerLinkActiveOptions]="{exact:true}" routerLink="/promotion" class="btn_mobile btn  links cal_{{l+2}}" >โปรโมชั่น</a>
-      </ng-container>
+        <ng-container *ngIf="member_name!=null&&member_name!=''">
+                <a [routerLinkActive]="['active-menu']"  [routerLinkActiveOptions]="{exact:true}" routerLink="/home" class="btn_mobile btn  links active cal_1">หน้าหลัก</a>
+                <a [routerLinkActive]="['active-menu']"  [routerLinkActiveOptions]="{exact:true}" routerLink="/result" class="btn_mobile btn  links active cal_1">ผลบอล</a>
+                <a [routerLinkActive]="['active-menu']"  [routerLinkActiveOptions]="{exact:true}" routerLink="/dashboard" class="btn_mobile btn  links active cal_1">ผลกำไร</a>
+                <a [routerLinkActive]="['active-menu']"  [routerLinkActiveOptions]="{exact:true}" routerLink="/contact" class="btn_mobile btn  links active cal_1">ติดต่อเรา</a>
+        </ng-container>
+        <ng-container *ngIf="member_name==null||member_name==''">
+                <a [routerLinkActive]="['active-menu']"  [routerLinkActiveOptions]="{exact:true}" routerLink="/home" class="btn_mobile btn  links active cal_1">หน้าหลัก</a>
+                <a [routerLinkActive]="['active-menu']"  [routerLinkActiveOptions]="{exact:true}" routerLink="/result" class="btn_mobile btn  links active cal_1">ผลบอล</a>
+                <a [routerLinkActive]="['active-menu']"  [routerLinkActiveOptions]="{exact:true}" routerLink="/dashboard" class="btn_mobile btn  links active cal_1">ผลกำไร</a>
+                <a [routerLinkActive]="['active-menu']"  [routerLinkActiveOptions]="{exact:true}" routerLink="/contact" class="btn_mobile btn  links active cal_1">ติดต่อเรา</a>
+                <a [routerLinkActive]="['active-menu']"  [routerLinkActiveOptions]="{exact:true}" routerLink="/login" class="btn_mobile btn  links active cal_1">login</a>
+        </ng-container>
+        
   </div>

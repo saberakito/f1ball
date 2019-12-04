@@ -1,0 +1,61 @@
+<form #form='ngForm' class="form-horizontal" >
+    <ng-container *ngFor="let games of users; index as  i; first as isFirst;let l = count">
+        <div  class="col-md-12 col-sm-12">
+            <div  class="card mb-3">
+                <div  class="card-body">
+                    <div  class="row">
+                        <div  class="col-md-12 col-sm-12">
+                            <h5  class="card-header"><span  class="border p-1  bg-success text-white">เวลา {{games.hd_time}}</span></h5></div>
+                        <div  class="col-md-5 col-sm-5" style="font-size: 28px;text-align: center;">
+                            <div>
+                                <ng-container *ngIf="games.hg_team_win==null||games.hg_team_win==''">
+                                        <input  type="radio" value="1" name="{{games.hd_id}}"   ngModel="game{{games.hd_id}}" id="defaultGroupExample_{{i}}" >
+                                </ng-container>
+                                <label  for="defaultGroupExample_{{i}}">&nbsp; {{games.hd_home}} ชนะ</label>
+                            </div>
+                            <ng-container *ngIf="games.hg_team_win=='1'">
+                                <span _ngcontent-ehk-c2="" class="badge badge-pill badge-success" style="font-weight: 400;"> ชนะ </span>
+                            </ng-container>
+                            
+                        </div>
+                        <div  class="col-md-2 col-sm-2" style="font-size: 28px;text-align: center;">
+                            <div>
+                                <ng-container *ngIf="games.hg_team_win==null||games.hg_team_win==''">
+                                        <input  type="radio" value="3" name="{{games.hd_id}}" ngModel="game{{games.hd_id}}" id="defaultGroupExample2_{{i}}">
+                                </ng-container>
+                                    <label  for="defaultGroupExample2_{{i}}">&nbsp; เสมอ</label>
+                            </div>
+                            <ng-container *ngIf="games.hg_team_win=='3'">
+                                <span _ngcontent-ehk-c2="" class="badge badge-pill badge-success" style="font-weight: 400;"> ทายเสมอ </span>
+                            </ng-container>
+                            
+                        </div>
+                        <div  class="col-md-5 col-sm-5" style="font-size: 28px;text-align: center;">
+                            <div >
+                                <ng-container *ngIf="games.hg_team_win==null||games.hg_team_win==''">
+                                    <input  type="radio" value="2" name="{{games.hd_id}}"  ngModel="game{{games.hd_id}}" id="defaultGroupExample3_{{i}}">
+                                </ng-container>
+                                <label  for="defaultGroupExample3_{{i}}">&nbsp; {{games.hd_away}} ชนะ</label>
+                            </div>
+                            <ng-container *ngIf="games.hg_team_win=='2'">
+                                    <span _ngcontent-ehk-c2="" class="badge badge-pill badge-success" style="font-weight: 400;"> ชนะ </span>
+                            </ng-container>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+  <div  class="col-md-12 col-sm-12">
+      <div  class="card mb-3">
+          <div  class="card-body">
+              <div  class="btn_" style="text-align: left;">
+                <a (click)="sendDataGame(form)" class="badge badge-primary btn_game" style="font-size: 1.2em; font-weight:100;color:white; padding-right:30px;padding-left:30px;padding-top:15px;padding-bottom:15px;">ส่งผลทาย</a>
+                  
+                  <a (click)="resetDataGame()" class="badge badge-danger btn_game" style="margin-left:30px; font-size: 1.2em; font-weight:100;color:white; padding-right:30px;padding-left:30px;padding-top:15px;padding-bottom:15px;">ล้างข้อมูล</a>
+                </div>
+          </div>
+      </div>
+  </div>
+</form>

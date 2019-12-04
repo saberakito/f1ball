@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoService } from 'src/app/service/todo.service';
 import { ActivatedRoute } from '@angular/router';
-import { ColorEvent } from 'ngx-color';
+// import { ColorEvent } from 'ngx-color';
 @Component({
   selector: 'app-manage_data',
   templateUrl: './manage_data.component.html',
@@ -30,24 +30,24 @@ export class Manage_dataComponent implements OnInit {
     alert();
   }
 
-  handleChange($event: ColorEvent) {
-    console.log($event.color);
-    // color = {
-    //   hex: '#333',
-    //   rgb: {
-    //     r: 51,
-    //     g: 51,
-    //     b: 51,
-    //     a: 1,
-    //   },
-    //   hsl: {
-    //     h: 0,
-    //     s: 0,
-    //     l: .20,
-    //     a: 1,
-    //   },
-    // }
-  }
+  // handleChange($event: ColorEvent) {
+  //   console.log($event.color);
+  //   // color = {
+  //   //   hex: '#333',
+  //   //   rgb: {
+  //   //     r: 51,
+  //   //     g: 51,
+  //   //     b: 51,
+  //   //     a: 1,
+  //   //   },
+  //   //   hsl: {
+  //   //     h: 0,
+  //   //     s: 0,
+  //   //     l: .20,
+  //   //     a: 1,
+  //   //   },
+  //   // }
+  // }
 
 }
 

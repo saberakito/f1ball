@@ -1,16 +1,12 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgImageSliderComponent } from 'ng-image-slider';
 import { TodoService } from 'src/app/service/todo.service';
-import { IImage } from 'ng-simple-slideshow';
-import { NgForm } from '@angular/forms';
-import {Router} from "@angular/router"
-// import * as M from '../../../assets/script/materialize/js/materialize.min.js';
+import {Router,NavigationEnd} from "@angular/router"
 import * as $ from 'jquery';
-import * as AOS from 'aos';
-
-
-declare  var testHoldon,HoldOn,validURL:  any;
-
+import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent } from 'rxjs';
+export interface DialogData {
+  animal: 'panda' | 'unicorn' | 'lion';
+}
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,230 +14,228 @@ declare  var testHoldon,HoldOn,validURL:  any;
 })
 
 export class HomeComponent implements OnInit {
-  public user_name:string;
-  public user_tel:string;
-  public user_line:string;
-  public dp_link:string = 'https://www.facebook.com/ejan2016/posts/1471403766353958';
-  public text_return:string = ''; 
-  
-  public dp_id:string;
-  public image_link:string;
-  public all_likes:string;
-  public all_comments:string;
-  public image_post:string;
-  public post_message:string;
-  public name_page:string;
-  public link_like:string;
-  public data_user_like:any;
-  public user_win:any;
-  public user_win_id:any;
-  public data_user_win:any;
-  
-  images = [  
-     //{ img: "/assets/images/bg_slide/Slide2.jpg" },  
-     //{ img: "/assets/images/bg_slide/slide1.jpg" },
-  ];  
-  
-  slideConfig = {
-    "slidesToShow": 1,  
-    "dots": false,  
-    "infinite": true ,
-    "autoplay":true ,
-    "autoplaySpeed":7000,
-    mobileFirst: true,
-    centerMode: true,
-    arrows: false,
-    centerPadding: '0.1px',
-  };
-  height: string = '';
-  imageSize:{width:600, height: 300};
-  arrowSize: string = '30px';
-  showArrows: boolean = false;
-  disableSwiping: boolean = false;
-  autoPlay: boolean = true;
-  autoPlayInterval: number = 7000;
-  stopAutoPlayOnSlide: boolean = true;
-  debug: boolean = false;
-  backgroundSize: string = '100% 100%';
-  backgroundPosition: string = 'top center';
-  backgroundRepeat: string = 'no-repeat';
-  showDots: boolean = false;
-  dotColor: string = '#FFF';
-  showCaptions: boolean = true;
-  captionColor: string = '#FFF';
-  captionBackground: string = 'rgba(0, 0, 0, .35)';
-  lazyLoad: boolean = true;
-  hideOnNoSlides: boolean = false;
-  width: string = '100%';
-  fullscreen: boolean = false;
-  imageObject: Array<object> = [{
-      // image: '/assets/images/bg_slide/Slide2.jpg',
-      // thumbImage: '/assets/images/bg_slide/Slide2.jpg'
-  }, 
 
-  
-  // {
-  //     image: '/assets/images/content/slide2.jpg',
-  //     thumbImage: '/assets/images/content/slide2.jpg',
-  //     //title: 'Image with title' //Optional: You can use this key if you want to show title
-  // },{
-  //     image: '/assets/images/content/slide3.jpg',
-  //     thumbImage: '/assets/images/content/slide3.jpg',
-  //     //title: 'Image with title' //Optional: You can use this key if you want to show title
-  // }
-  ];
-  prevImageClick() {
-      this.slider.prev();
-  }
-
-  nextImageClick() {
-      this.slider.next();
-  }
-
-  // imageUrls: (string | IImage)[] = [
-  //   { url: '/assets/images/bg_slide/Slide2.jpg' },
-  //   // { url: '/assets/images/bg_slide/slide3.jpg' },
-  //   // { url: '/assets/images/content/slide3.jpg' }
-  // ];
-  imageUrls = [
-    //  { img: "/assets/images/bg_slide/slide1.jpg" },  
-    //  { img: "/assets/images/bg_slide/Slide2.jpg" },
-  ];
   public slideData:slideData[];
   constructor(private todoServcie:TodoService,private router:Router) { }
   @ViewChild('nav') slider: NgImageSliderComponent;
   public todoList:Todo[];
-
+  public users: Handicap[];
   options = {
     fullWidth: true
   };
-  
-  public login_status_check:any;
+  public member_name:string;
+  public member_code_tran:string;
+  public member_id:string;
+  public bsInlineValue:any;
+  public date_data:any;
+  public credit_member:any;
+  public time_start:any;
+  public date1:any;
+  public date2:any;
+  public showHeader:any;
+  public hdd_display_:any;
   ngOnInit() {
-    if(localStorage.getItem("login")=="success"){
-      this.login_status_check = '1';
-    }
-    // var elems = document.querySelectorAll('.carousel');
-    // var instances = M.Carousel.init(elems,this.options);
-
-    
-    this.todoServcie.getTodoList(0).subscribe((response)=>{
-     // console.log(response);
-      this.todoList = response;
-    });
-    
-    this.todoServcie.getSlide().subscribe((response)=>{
-        var arraySlide = [];
-        for(var i =0; i<response.length;i++){
-          arraySlide.push({ img: '/upload/files/'+response[i].adjust_page_image_name+'.'+response[i].adjust_page_image_type+'?v=1.2' });
-          //arraySlide.push({ url: '/upload/files/'+response[i].adjust_page_image_name+'.'+response[i].adjust_page_image_type+'?v=1.2' });
-        }
-        
-     this.imageUrls = arraySlide;
-    });
-  }
-  contentLoad(data) {
-    if (data == 'deposit') {
-        $("." + data).addClass('active');
-        $(".withdraw").removeClass('active');
-        $('.deposit_area').css('display', 'block');
-        $('.withdraw_area').css('display', 'none');
-    }
-    if (data != 'deposit') {
-      $(".withdraw").addClass('active');
-      $(".deposit").removeClass('active');
-      $('.deposit_area').css('display', 'none');
-      $('.withdraw_area').css('display', 'block');
-    }
-};
- 
-
-  onSubmit(form: NgForm): void {
-   if(!validURL(form.value.dp_link)){
-    alert('url ไม่ถูกต้อง');
-   }else{
-    testHoldon('sk-circle','กำลังดึงข้อมูล');
-     var get_data = "";
-      var service = this.todoServcie;
-      var image_link = this.image_link;
-      var all_likes = this.all_likes;
-      var all_comments = this.all_comments;
-      var image_post = this.image_post;
-      var post_message = this.post_message;
-      service.getDataLink(form.value.dp_link).subscribe(data=>{
-        if(data.status_link==false){
-          alert('ไม่สามารถอ่านข้อมูลโพสที่ต้องการได้ อาจเป็นเพราะโพสที่ระบุไม่ใช่โพสสาธารณะ หรือURLอาจไม่ถูกต้อง');
-          HoldOn.close();
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        var check_url = event.url.split("/")[2];
+        if(check_url!='game'){
+          this.showHeader = true;
         }else{
-          service.saveLink(data[0]['data_text_like_and_share'][0],form.value.dp_link).subscribe(data2=>{
-            //debugger;
-            this.dp_id = data2.dp_id;
-            this.image_link = data2.image_link;
-            this.all_likes = data2.all_likes;
-            this.all_comments =data2.all_comments;
-            this.image_post =data2.image_link;
-            this.post_message =data2.post_message;
-            this.name_page =data2.dp_name_page;
-            this.link_like =data2.dp_link_like;
-            service.getDataLike_from_mysql(this.dp_id).subscribe(data3=>{
-              localStorage.setItem('user_like',JSON.stringify(data3));
-                this.data_user_like = data3;
-            });
-            service.getUserWin(this.dp_id).subscribe(data4=>{
-                this.data_user_win = data4;
-            });
-            HoldOn.close();
-          });
+          this.showHeader = false;
         }
-      });
-   } 
-  //  testHoldon('sk-circle','กำลังดึงข้อมูล');
+      //  this.showHeader = this.activatedRoute.firstChild.snapshot.data.showHeader !== false;
+      }
+    });
 
+    this.bsInlineValue = new Date();
+    if(localStorage.data_member!=null){
+      var objArray = JSON.parse(localStorage.data_member);
+      this.member_name = objArray.member_code;
+      this.member_id = objArray.member_id;
+      this.member_code_tran = objArray.member_code_tran;
+    }
+    //this.member_id = '1';
+    this.todoServcie.getHandicap_member_id(this.member_id).subscribe((response)=>{
+      //debugger;
+      this.users = response.data;
+    });
+    this.todoServcie.getCredit(this.member_id).subscribe((response)=>{
+      this.credit_member = response.data.member_credit;
+      //this.users = response.data;
+    });
+    
     
   }
-  saveLike(data,data_id) {
-   // debugger;
-   testHoldon('sk-circle','กำลังเซฟข้อมูล');
-    var link_like = $(data.currentTarget).attr("id");
-    this.todoServcie.getDataLike(link_like,data_id).subscribe(data2=>{
-      var data_id = data2.data_id;
-      var string_array_user_like = JSON.stringify(data2.data_user_like);
-      this.todoServcie.saveDataLike(data_id,string_array_user_like).subscribe(data3=>{
-        this.todoServcie.getDataLike_from_mysql(this.dp_id).subscribe(data3=>{
-          localStorage.setItem('user_like',JSON.stringify(data3));
-            this.data_user_like = data3;
+
+  onValueChange(value: Date): void {
+    this.date_data = value;
+    this.todoServcie.getHandicapFromDate(this.date_data,this.member_id).subscribe((response)=>{
+      this.users = response.data;
+      
+    });
+  }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigate(['/home']);
+    if(localStorage.data_member!=null){
+      var objArray = JSON.parse(localStorage.data_member);
+      this.member_name = objArray.member_code;
+      this.member_id = objArray.member_id;
+      
+    }
+    location.reload();
+  }
+
+  public checkTime(data){
+    
+    this.date1 = new Date(); // 9:00 AM
+    var year = this.date1.getFullYear();
+    var month = this.date1.getMonth();
+    var days = this.date1.getDate();
+    var res = data.split(":");
+    this.date2 = new Date(year, month, days, res[0], res[1]); // 5:00 PM
+   
+    // the following is to handle cases where the times are on the opposite side of
+    // midnight e.g. when you want to get the difference between 9:00 PM and 5:00 AM
+    
+    if (res[0]>=0&&res[0]<10) {
+      this.date2.setDate(this.date2.getDate() + 1);
+    }
+    var diff = this.date2 - this.date1;
+    this.time_start = diff;
+    if(diff<0){
+      return false;
+    }
+    
+  }
+
+  public updateCredit(data1,data2){
+    debugger;
+    this.todoServcie.updateCredit(this.member_name,this.member_code_tran).subscribe((response)=>{
+      if(response.result==true){
+        var object = response.data;
+        this.todoServcie.updateCreditSave(this.member_name,this.member_code_tran,object).subscribe((response2)=>{
+         // console.log(response2);
+          if(response2.success==true){
+            alert(response2.message);
+            this.credit_member = response2.data;
+          }else{
+            alert('ฝากเงินเข้าระบบเพื่อรับ Credit');
+          }
         });
-       HoldOn.close();
-      });
+      }
+     
     });
+    
   }
 
-  randomUser(){
-    console.log(localStorage.getItem('user_like'));
-    var objArray = JSON.parse(localStorage.getItem('user_like'));
-    var user_win = objArray[Math.floor(Math.random()*objArray.length)];
-    console.log(user_win);
-    //debugger;
-    this.user_win = user_win.user_name;
-    this.user_win_id = user_win.user_data;
-  }
+  public displayScore(data){
+    if(this.member_id==null){
+      this.router.navigate(['/login']);
+      return;
+    }
+   
+    var id = $(data.currentTarget).attr("id");
+    this.todoServcie.saveHandicap(id,this.member_id).subscribe((response)=>{
+     
+      if(response.success==true){
+        this.todoServcie.getCredit(this.member_id).subscribe((response)=>{
+          this.credit_member = response.data.member_credit;
+        });
+        this.todoServcie.getHandicap_by_id(this.member_id,id).subscribe((response)=>{
+          this.hdd_display_ = response.data.hdd_display;
+          
 
-  onSubmitUserWin(form: NgForm): void {
-   // debugger;
-    this.todoServcie.saveUserWin(form.value.dp_id,form.value.user_win_id,form.value.user_win).subscribe(data=>{
-      //debugger;
-      this.todoServcie.getUserWin(form.value.dp_id).subscribe(data4=>{
-        this.data_user_win = data4;
-      });
+          $(".btn_[id='"+id+"']").fadeOut(500);
+    
+          setTimeout(function(){
+            $(".icon_loading[id='"+id+"_1']").fadeIn(500);
+          },500);
+          setTimeout(function(){
+            
+            $(".icon_loading[id='"+id+"_1']").fadeOut(500,function(){
+              $(".result_score[id='"+id+"_1']").fadeIn(500,function(){
+                $(".icon_loading[id='"+id+"_2']").fadeIn(500);
+              });
+            });
+            
+          },1000);
+          setTimeout(function(){
+            $(".result_score[id='"+id+"_2']").fadeIn(500);
+            $(".icon_loading[id='"+id+"_2']").fadeOut(500);
+            $(".icon_loading[id='"+id+"_3']").fadeIn(500);
+          },2500);
+          setTimeout(function(){
+            $(".result_score[id='"+id+"_3']").fadeIn(500);
+            $(".icon_loading[id='"+id+"_3']").fadeOut(500);
+            $(".icon_loading[id='"+id+"_4']").fadeIn(500);
+          },3000);
+          setTimeout(function(){
+            $(".result_score[id='"+id+"_4']").fadeIn(500);
+            $(".icon_loading[id='"+id+"_4']").fadeOut(500);
+          },3400);
+        });
+       
+        
+      }else if(response.success=='notopen'){
+        alert(response.message);
+      }else if(response.success=='notyet'){
+        alert("สามารถกดได้ใน เวลา "+response.message);
+      }else{
+        alert("กรุณาเติม Credit");
+        return;
+      }
+      
     });
-  };
-
-
-  open_popup() {
-   // const modalRef = this.modalService.open(NgbdModalContent);
-   // modalRef.componentInstance.name = 'World';
+   
+    
   }
+}
 
+interface Handicap {
+  dateNew: string
+  hd_away: string
+  hd_away_star: string
+  hd_create_date: string
+  hd_date: string
+  hd_delete: string
+  hd_handicap: string
+  hd_hl: string
+  hd_home: string
+  hd_home_star: string
+  hd_id: string
+  hd_real_hl:string
+  hd_real_result: string
+  hd_real_win: string
+  hd_result_away: string
+  hd_result_cal: string
+  hd_result_hl: string
+  hd_result_hl_stat: string
+  hd_result_home: string
+  hd_result_percent: string
+  hd_result_win: string
+  hd_time: string
+  hd_update_date: string
+  hd_xa: string
+  hd_xh: string
+  hdd_create_date: string
+  hdd_delete: string
+  hdd_display: string
+  hdd_hd_Id: string
+  hdd_id: string
+  hdd_m_id: string
+  hdd_update_date: string
+  time_start: string
+}
+
+interface User {
+  member_id :string;
+  member_type :string;
+  member_name :string;
+  contact_text_sort :string;
+  member_lastname :string;
+  member_delete :string;
 }
 interface Todo{
   adjust_page_id:number;
@@ -268,3 +262,4 @@ interface slideData {
   adjust_page_create_date :string;
   adjust_page_update_date :string;
 }
+

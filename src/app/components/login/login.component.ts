@@ -1,48 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgImageSliderComponent } from 'ng-image-slider';
 import { TodoService } from 'src/app/service/todo.service';
-import { Router } from '@angular/router';
+import { IImage } from 'ng-simple-slideshow';
+import { NgForm } from '@angular/forms';
+import {Router} from "@angular/router"
+
+import * as $ from 'jquery';
+import * as AOS from 'aos';
+
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 
-
-export class loginComponent {
+export class LoginComponent implements OnInit {
   constructor(private router:Router, private loginService: TodoService){}
-  public username;
-  public password;
-
+  public username:string;
+  public password:string;
   infoMessage = '';
+  public member_name:string;
+  public member_id:string;
   ngOnInit() {
-    if(localStorage.getItem("login")=="success"){
-      this.router.navigate(['/home']);
+    if(localStorage.getItem("login")=="success"&&localStorage.getItem("data_member")!=null){
+      this.router.navigate(['/']);
+      
+    }
+    if(localStorage.data_member!=null){
+      var objArray = JSON.parse(localStorage.data_member);
+      this.member_name = objArray.member_name+' '+objArray.member_lastname;
+      this.member_id = objArray.member_id;
     }
   }
-  public Validateuser(){
-    this.loginService.ValidateUser(this.username,this.password).subscribe(data => {
-      if(data.success==true){
-       // this.router.navigateByUrl('/home');
-        this.loginService.setLoggedIn(true);
-        this.infoMessage = '';
-        window.location.reload();
+  Validateuser(){
+    this.loginService.ValidateUser($("[name='username']").val(),$("[name='password']").val()).subscribe(data => {
+      if(data.result=='Y'){
+        this.loginService.saveMember($("[name='username']").val(),$("[name='password']").val()).subscribe(data => {
+          localStorage.setItem("data_member",JSON.stringify(data));
+          this.router.navigateByUrl('/');
+          this.loginService.setLoggedIn(true);
+          this.infoMessage = '';
+          location.reload();
+        });
+        
       }else{
         this.infoMessage = 'Login Failed. Please Try Again.';
         this.router.navigate(['login']);
       }
     });
   }
-}
-
-interface ContactgText {
-  contact_text_id :string;
-  contact_text_title :string;
-  contact_text_detail :string;
-  contact_text_sort :string;
-  contact_text_hide :string;
-  contact_text_delete :string;
-  contact_text_create_by :string;
-  contact_text_update_by :string;
-  contact_text_create_date :string;
-  contact_text_update_date :string;
 }

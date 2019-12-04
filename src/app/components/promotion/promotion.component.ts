@@ -11,10 +11,7 @@ export class PromotionComponent implements OnInit {
   constructor(private todoServcie:TodoService) { }
   public todoPromotionText:PromotionText[];
   ngOnInit() {
-    this.todoServcie.getTextPromotion().subscribe((response)=>{
-        this.todoPromotionText = response;
-      //  console.log(this.todoPromotionText);
-    });
+    
    
   }
 

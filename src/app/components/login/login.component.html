@@ -1,23 +1,35 @@
-<div class="wrapper fadeInDown">
-  <div id="formContent">
-    <!-- Tabs Titles -->
-
-    <!-- Icon -->
-    <div class="fadeIn first">
-       LOGIN
-    </div>
-
-    <!-- Login Form -->
-    <form (ngSubmit)="Validateuser()">
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="username">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-      <input type="submit" class="fadeIn fourth" value="Log In">
-    </form>
-
-    <!-- Remind Passowrd -->
-    <div id="formFooter">
-      <a class="underlineHover" href="#">Forgot Password?</a>
-    </div>
-
-  </div>
+<div  class="app-body">
+    <main  class="main d-flex align-items-center">
+        <div  class="container">
+            <div  class="row" style="padding:15px;">
+                <div  class="col-md-8 mx-auto">
+                    <div  class="card-group">
+                        <div  class="card p-4">
+                            <div  class="card-body">
+                                <span>{{infoMessage}}</span>
+                                <form (ngSubmit)="Validateuser()" novalidate="" class="ng-untouched ng-pristine ng-valid">
+                                    <div  class="input-group mb-3">
+                                        <div  class="input-group-prepend"><span  class="input-group-text"><i  class="icon-user"></i></span></div>
+                                        <input  autocomplete="username" name="username" class="form-control ng-untouched ng-pristine ng-invalid" placeholder="Username" required="" type="text" ng-reflect-required="" ng-reflect-options="[object Object]">
+                                    </div>
+                                    <div  class="input-group mb-4">
+                                        <div  class="input-group-prepend"><span  class="input-group-text"><i  class="icon-lock"></i></span></div>
+                                        <input  autocomplete="current-password" name="password" class="form-control ng-untouched ng-pristine ng-invalid" placeholder="Password" required="" type="password" ng-reflect-required="" ng-reflect-options="[object Object]">
+                                    </div>
+                                    <div  class="row">
+                                        <div  class="col-6">
+                                            <button  class="btn btn-primary px-4" type="submit">Login</button>
+                                        </div>
+                                        <div  class="col-6 text-right">
+                                            <button  class="btn btn-link px-0" type="button">Forgot password?</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 </div>

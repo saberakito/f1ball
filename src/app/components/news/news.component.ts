@@ -12,10 +12,7 @@ export class NewsComponent implements OnInit {
   public pageNews = "";
   ngOnInit() {
     //call service
-    this.todoServcie.getTodoList(1).subscribe((response)=>{
-     // console.log(response);
-      this.todoList = response;
-    });
+    
   }
 
 
