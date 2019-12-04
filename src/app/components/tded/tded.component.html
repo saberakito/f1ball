@@ -60,20 +60,9 @@
                                                 <img _ngcontent-osx-c2="" class="icon_loading" src="/assets/img/icon/08.gif" style="width:25px;height:25px;display:none;" id="{{han.hd_id}}_1">
                                                 
                                                 <ng-container *ngIf="han.hdd_display!='2'">
-                                                    <span _ngcontent-osx-c2="" class="icon_loading" id="{{han.hd_id}}_1">-</span>
+                                                    <!-- <span _ngcontent-osx-c2="" class="icon_loading" id="{{han.hd_id}}_1">-</span> -->
                                                 </ng-container>
-                                                <ng-container *ngIf="han.hdd_display=='2'">
-                                                    <span _ngcontent-osx-c2="" class="result_score" style="color: black;" id="{{han.hd_id}}_1">
-                                                        <span _ngcontent-osx-c2="" style="color: rgb(98, 241, 98);"> 
-                                                                <ng-container *ngIf="han.hd_result_win=='1'">
-                                                                        {{han.hd_home}}
-                                                                </ng-container>
-                                                                <ng-container *ngIf="han.hd_result_win=='2'">
-                                                                        {{han.hd_away}}
-                                                                </ng-container>
-                                                        </span>
-                                                    </span>
-                                                </ng-container>
+                                               
                                                 <span _ngcontent-osx-c2="" class="result_score" style="display:block; color: black;" id="{{han.hd_id}}_1">
                                                         <span _ngcontent-osx-c2="" style="color: rgb(98, 241, 98);"> 
                                                                 <ng-container *ngIf="han.hd_result_win=='1'">
@@ -89,32 +78,21 @@
                                             <td _ngcontent-osx-c2="" class="classTD">
                                                 <img _ngcontent-osx-c2="" class="icon_loading" src="/assets/img/icon/08.gif" style="width:25px;height:25px;display:none;" id="{{han.hd_id}}_2">
                                                 <ng-container *ngIf="han.hdd_display!='2'">
-                                                    <span _ngcontent-osx-c2="" class="icon_loading" id="{{han.hd_id}}_2">-</span>
+                                                    <!-- <span _ngcontent-osx-c2="" class="icon_loading" id="{{han.hd_id}}_2">-</span> -->
                                                 </ng-container>
-                                                <ng-container *ngIf="han.hdd_display=='2'">
-                                                        <span _ngcontent-osx-c2="" class="result_score" style=" color: white;" id="{{han.hd_id}}_2">{{han.hd_result_hl}}</span>
-                                                </ng-container>
+                                                
                                                 <span _ngcontent-osx-c2="" class="result_score" style="display:block; color: white;" id="{{han.hd_id}}_2">{{han.hd_result_hl}}</span>
                                             </td>
                                             <td _ngcontent-osx-c2="" class="classTD">
                                                 <img _ngcontent-osx-c2="" class="icon_loading" src="/assets/img/icon/08.gif" style="width:25px;height:25px;display:none;" id="{{han.hd_id}}_3">
                                                 <ng-container *ngIf="han.hdd_display!='2'">
-                                                    <span _ngcontent-osx-c2="" class="icon_loading" id="{{han.hd_id}}_3">-</span>
+                                                    <!-- <span _ngcontent-osx-c2="" class="icon_loading" id="{{han.hd_id}}_3">-</span> -->
                                                 </ng-container>
-                                                <ng-container *ngIf="han.hdd_display=='2'">
-                                                    <span _ngcontent-osx-c2="" class="result_score" style=" color: white;" id="{{han.hd_id}}_3">{{han.hd_result_home}} : {{han.hd_result_away}}</span>
-                                                </ng-container>
+                                              
                                                 <span _ngcontent-osx-c2="" class="result_score" style="display:block; color: white;" id="{{han.hd_id}}_3">{{han.hd_result_home}} : {{han.hd_result_away}}</span>
                                             </td>
                                         </tr>
                                         <tr _ngcontent-bka-c2="" style=" color: black;"><td _ngcontent-bka-c2="" class="classTD scan_td" colspan="3" style="border-top: 1;width: 300px; ">
-                                            <ng-container *ngIf="han.hdd_display=='2'">
-                                                    <progress-bar class="result_score" id="{{han.hd_id}}_4" [progress]="han.hd_result_percent" [color]="'#488aff'">
-                                                        </progress-bar>
-                                                </ng-container>
-                                            <ng-container *ngIf="han.hdd_display!='2'">
-                                                    <div _ngcontent-bka-c2="" class="btn_" (click)="displayScore($event)" id="{{han.hd_id}}"><img _ngcontent-bka-c2="" alt="" src="assets/images/icon/scan.png"></div>
-                                                </ng-container>
                                                 <progress-bar style="display:block; " class="result_score" id="{{han.hd_id}}_4" [progress]="han.hd_result_percent" [color]="'#488aff'">
                                                     </progress-bar>
                                             </td>

@@ -17,8 +17,8 @@ export class TodoService {
 
   constructor(private http:Http, private http2: HttpClient) { }
 
-  //private local = window.location.origin;
-  private local = "http://localhost:80";
+  private local = window.location.origin;
+  //private local = "http://localhost:80";
   //private local = "http://betufa55.com";
 
   getCredit(member_id){

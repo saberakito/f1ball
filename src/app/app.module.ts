@@ -72,7 +72,7 @@ const appRoutes:Routes = [
   {path:"regComplete", component:regCompleteComponent, canActivate:[AuthGuard]},
   {path:"dashboard", component:DashboardComponent, canActivate:[AuthGuard]},
   {path:"result", component:ResultComponent, canActivate:[AuthGuard]},
-  {path:"game", component:GameComponent, canActivate:[AuthGuard]},
+  {path:"game/:id", component:GameComponent, canActivate:[AuthGuard]},
   {path:"tded", component:TdedComponent, canActivate:[AuthGuard]},
 
   {path:"news", children:[

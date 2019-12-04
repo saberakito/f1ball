@@ -12,7 +12,7 @@ export class TdedComponent implements OnInit {
   public users: Handicap[];
   
   ngOnInit() {
-    this.todoServcie.getHandicap_member_id('').subscribe((response)=>{
+    this.todoServcie.getHandicap_tded('').subscribe((response)=>{
       //debugger;
       this.users = response.data;
     });
