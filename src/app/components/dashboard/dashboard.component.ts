@@ -39,7 +39,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.todoServcie.getHandicapGraph().subscribe((response)=>{
       this.users = response.data;
-      debugger;
       var data_win_date_array = [];
       var data_win_result_array = [];
       var data_hlwin_result_array = [];

@@ -38,6 +38,10 @@ export class TodoService {
     //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
     return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"getHandicap_member",member_id:member_id}).pipe(map((res)=>res.json()));
   }
+  getHandicap_tded(member_id){
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"getHandicap_tded",member_id:member_id}).pipe(map((res)=>res.json()));
+  }
 
   getHandicap_by_id(member_id,id){
     //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));

@@ -25,8 +25,8 @@
                     <tr  style="background: #464646; color: white;">
                         <td  class="no_border_top" colspan="1"> {{result.hd_handicap}} </td>
                         <td  class="no_border_top" colspan="1"> {{result.hd_hl}} </td>
-                        <td ><img  class="icon_loading" src="/assets/img/icon/08.gif" style="width:25px;height:25px;display:none;" id="1036_3">
-                          <span  class="result_score" style="display: block;color: white;" id="1036_3">{{result.hd_real_result}}</span></td>
+                        <td ><img  class="icon_loading" src="/assets/img/icon/08.gif" style="width:25px;height:25px;display:none;" id="{{result.hd_id}}_3">
+                          <span  class="result_score" style="display: block;color: white;" id="{{result.hd_id}}_3">{{result.hd_real_result}}</span></td>
                     </tr>
                     <tr  style="background: #636363; color: white;">
                         <td  style="border-top: 0;width: 300px;">Win</td>
@@ -34,7 +34,7 @@
                         <td  style="border-top: 0;width: 200px;">Score</td>
                     </tr>
                     <tr  style="background: #252525; color: white;">
-                        <td  class="classTD"><img  class="icon_loading" src="/assets/img/icon/08.gif" style="width:25px;height:25px;display:none;" id="1036_1"><span  class="result_score_" style="color: black;" id="1036_1">
+                        <td  class="classTD"><img  class="icon_loading" src="/assets/img/icon/08.gif" style="width:25px;height:25px;display:none;" id="{{result.hd_id}}_1"><span  class="result_score_" style="color: black;" id="{{result.hd_id}}_1">
                           <span  class="textResult">
                             <ng-container *ngIf="result.hd_result_win=='1'">
                                 {{result.hd_home}}
