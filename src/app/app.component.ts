@@ -51,7 +51,7 @@ export class AppComponent {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         var check_url = event.url.split("/")[1];
-        if(check_url=='game'){
+        if(check_url=='game'||check_url=='game_tded'){
           this.showHeader = false;
           $('body').css('background','unset');
          // this.class_checkShow = "content_100";

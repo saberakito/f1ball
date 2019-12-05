@@ -1,0 +1,108 @@
+<ng-container *ngIf="countGameStep!='0'&&countGameStep!=null">
+        <div class="container result_area">
+            <div class="card-deck">
+            <ng-container *ngFor="let step of steps; index as  i; first as isFirst;let l = count">
+                    <ng-container *ngIf="i=='0'">
+                           <div class="title_date">
+                                {{step.sb_date}} 
+                           </div> 
+                    </ng-container>
+                    <div class="card mb-6">
+                        <!-- <img class="card-img-top img-fluid" src="//placehold.it/500x280" alt="Card image cap"> -->
+                        <div class="card-body">
+                            <h4 class="card-title" style="font-size: 16px; font-weight: bold;">ID:{{step.sb_code}}</h4>
+                            <ng-container *ngFor="let hand_step of hand_steps; index as  i; first as isFirst;let l = count">
+                                <ng-container *ngIf="hand_step.hgs_sb_id==step.sb_id">
+                                        <p class="card-text" style="font-size: 12px;">
+                                                <ng-container *ngIf="hand_step.hgs_team_win=='1'">
+                                                        {{hand_step.hd_home}} ชนะ
+                                                </ng-container>
+                                                
+                                                <ng-container *ngIf="hand_step.hgs_team_win=='2'">
+                                                        {{hand_step.hd_away}} ชนะ
+                                                </ng-container>
+
+                                                <ng-container *ngIf="hand_step.hgs_team_win=='3'">
+                                                        {{hand_step.hd_home}} เสมอ {{hand_step.hd_away}}
+                                                </ng-container>
+                                        </p>
+                                </ng-container>
+                            </ng-container>
+                            <!-- <p class="card-text"><small class="text-muted">{{step.sb_create_date}}</small></p> -->
+                        </div>
+                    </div>
+                    <ng-container *ngIf="i%2=='0'&&i>1">
+                            <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
+                    </ng-container>
+                    
+            </ng-container>
+                
+            </div>
+        </div>
+</ng-container>
+
+<ng-container *ngIf="countGameStep=='0'||countGameStep==''||countGameStep==null">
+    <form #form='ngForm' class="form-horizontal" >
+        <div class="team_area">
+        <ng-container *ngFor="let games of users; index as  i; first as isFirst;let l = count">
+            <div  class="col-md-12 col-sm-12 ">
+                <div  class="card mb-3">
+                    <div  class="card-body">
+                        <div  class="row">
+                            <div  class="col-md-12 col-sm-12">
+                                <h5  class="card-header"><span  class="border p-1  bg-success text-white">เวลา {{games.hd_time}}</span></h5></div>
+                            <div  class="col-md-5 col-sm-5" style="font-size: 28px;text-align: center;">
+                                <div>
+                                    <ng-container *ngIf="games.hg_team_win==null||games.hg_team_win==''">
+                                            <input  type="radio" value="1" name="{{games.hd_id}}"   ngModel="{{games.hd_id}}" id="defaultGroupExample_{{i}}" >
+                                    </ng-container>
+                                    <label  for="defaultGroupExample_{{i}}">&nbsp; {{games.hd_home}} ชนะ</label>
+                                </div>
+                                <ng-container *ngIf="games.hg_team_win=='1'">
+                                    <span _ngcontent-ehk-c2="" class="badge badge-pill badge-success" style="font-weight: 400;"> ชนะ </span>
+                                </ng-container>
+                                
+                            </div>
+                            <div  class="col-md-2 col-sm-2" style="font-size: 28px;text-align: center;">
+                                <div>
+                                    <ng-container *ngIf="games.hg_team_win==null||games.hg_team_win==''">
+                                            <input  type="radio" value="3" name="{{games.hd_id}}" ngModel="{{games.hd_id}}" id="defaultGroupExample2_{{i}}">
+                                    </ng-container>
+                                        <label  for="defaultGroupExample2_{{i}}">&nbsp; เสมอ</label>
+                                </div>
+                                <ng-container *ngIf="games.hg_team_win=='3'">
+                                    <span _ngcontent-ehk-c2="" class="badge badge-pill badge-success" style="font-weight: 400;"> ทายเสมอ </span>
+                                </ng-container>
+                                
+                            </div>
+                            <div  class="col-md-5 col-sm-5" style="font-size: 28px;text-align: center;">
+                                <div >
+                                    <ng-container *ngIf="games.hg_team_win==null||games.hg_team_win==''">
+                                        <input  type="radio" value="2" name="{{games.hd_id}}"  ngModel="{{games.hd_id}}" id="defaultGroupExample3_{{i}}">
+                                    </ng-container>
+                                    <label  for="defaultGroupExample3_{{i}}">&nbsp; {{games.hd_away}} ชนะ</label>
+                                </div>
+                                <ng-container *ngIf="games.hg_team_win=='2'">
+                                        <span _ngcontent-ehk-c2="" class="badge badge-pill badge-success" style="font-weight: 400;"> ชนะ </span>
+                                </ng-container>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+      </div>
+      <div  class="col-md-12 col-sm-12 action_area">
+          <div  class="card mb-3">
+              <div  class="card-body">
+                  <div  class="btn_" style="text-align: left;">
+                    <a (click)="sendDataGame(form)" class="badge badge-primary btn_game" style="font-size: 1.2em; font-weight:100;color:white; padding-right:30px;padding-left:30px;padding-top:15px;padding-bottom:15px;">ส่งผลทาย</a>
+                      
+                      <a (click)="resetDataGame()" class="badge badge-danger btn_game" style="margin-left:30px; font-size: 1.2em; font-weight:100;color:white; padding-right:30px;padding-left:30px;padding-top:15px;padding-bottom:15px;">ล้างข้อมูล</a>
+                    </div>
+              </div>
+          </div>
+      </div>
+      </form>
+</ng-container>

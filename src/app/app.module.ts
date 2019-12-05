@@ -53,7 +53,8 @@ import { ChartModule } from 'angular2-chartjs';
 import { ContactComponent } from './components/contact/contact.component';
 import {ProgressBarModule} from "angular-progress-bar";
 import { GameComponent } from './components/game/game.component';
-import { TdedComponent } from './components/tded/tded.component'
+import { TdedComponent } from './components/tded/tded.component';
+import { GameTdedComponent } from './components/game-tded/game-tded.component'
 const appRoutes:Routes = [
   
   {path:"home", component:HomeComponent, canActivate:[AuthGuard]},
@@ -73,6 +74,7 @@ const appRoutes:Routes = [
   {path:"dashboard", component:DashboardComponent, canActivate:[AuthGuard]},
   {path:"result", component:ResultComponent, canActivate:[AuthGuard]},
   {path:"game/:id", component:GameComponent, canActivate:[AuthGuard]},
+  {path:"game_tded/:id", component:GameTdedComponent, canActivate:[AuthGuard]},
   {path:"tded", component:TdedComponent, canActivate:[AuthGuard]},
 
   {path:"news", children:[
@@ -118,7 +120,8 @@ const appRoutes:Routes = [
     DashboardComponent,
     ContactComponent,
     GameComponent,
-    TdedComponent
+    TdedComponent,
+    GameTdedComponent
   ],
   imports: [
     ChartModule,

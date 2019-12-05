@@ -1,0 +1,24 @@
+.action_area{
+    position: fixed;
+    bottom: -15px;
+}
+.team_area{
+    padding-bottom: 100px;
+    float: left;
+}
+
+.result_area{
+    padding:20px;
+}
+
+
+.title_date{
+    float: left;
+    /* clear: left; */
+    width: 100%;
+    clear: both;
+    padding-left: 20px;
+    padding-bottom: 10px;
+}
+
+

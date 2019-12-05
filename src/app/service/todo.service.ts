@@ -17,8 +17,8 @@ export class TodoService {
 
   constructor(private http:Http, private http2: HttpClient) { }
 
-  private local = window.location.origin;
-  //private local = "http://localhost:80";
+  //private local = window.location.origin;
+  private local = "http://localhost:80";
   //private local = "http://betufa55.com";
 
   getCredit(member_id){
@@ -54,9 +54,24 @@ export class TodoService {
     return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"getHandicap_game",member_id:member_id}).pipe(map((res)=>res.json()));
   }
 
+  getHandicap_game_step(member_id){
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"getHandicap_game_step",member_id:member_id}).pipe(map((res)=>res.json()));
+  }
+
   getHandicap_game_play(member_id){
     //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
     return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"getHandicap_game_play",member_id:member_id}).pipe(map((res)=>res.json()));
+  }
+
+  getHandicap_game_play_step(member_id){
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"getHandicap_game_play_step",member_id:member_id}).pipe(map((res)=>res.json()));
+  }
+
+  get_step(member_id){
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"get_step",member_id:member_id}).pipe(map((res)=>res.json()));
   }
 
   getHandicapFromDate(data,member_id){
@@ -83,6 +98,12 @@ export class TodoService {
     //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
     return this.http2.post<myData>(this.local+'/api/dataAdjustSport.php',{ac:"saveDataGame",m_id:m_id,data:data});
   }
+  saveDataGame_step(m_id,data){
+      
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http2.post<myData>(this.local+'/api/dataAdjustSport.php',{ac:"saveDataGame_step",m_id:m_id,data:data});
+  }
+
 
   getDataGame(m_id){
     //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
@@ -127,6 +148,10 @@ export class TodoService {
     return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"check_play",m_id:m_id}).pipe(map((res)=>res.json()));
   }
 
+  check_play_step(m_id){
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"check_play_step",m_id:m_id}).pipe(map((res)=>res.json()));
+  }
   checkWinGame(m_id,date){
     //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
     return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"checkWinGame",m_id:m_id,date_data:date}).pipe(map((res)=>res.json()));
