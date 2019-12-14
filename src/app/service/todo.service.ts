@@ -17,8 +17,8 @@ export class TodoService {
 
   constructor(private http:Http, private http2: HttpClient) { }
 
-  //private local = window.location.origin;
-  private local = "http://localhost:80";
+ private local = window.location.origin;
+  //private local = "http://localhost:80";
   //private local = "http://betufa55.com";
 
   getCredit(member_id){
@@ -38,10 +38,16 @@ export class TodoService {
     //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
     return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"getHandicap_member",member_id:member_id}).pipe(map((res)=>res.json()));
   }
+  getHandicap_tded_yesterday(member_id){
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"getHandicap_tded_yesterday",member_id:member_id}).pipe(map((res)=>res.json()));
+  }
+
   getHandicap_tded(member_id){
     //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
     return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"getHandicap_tded",member_id:member_id}).pipe(map((res)=>res.json()));
   }
+
 
   getHandicap_by_id(member_id,id){
     //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
@@ -57,6 +63,11 @@ export class TodoService {
   getHandicap_game_step(member_id){
     //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
     return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"getHandicap_game_step",member_id:member_id}).pipe(map((res)=>res.json()));
+  }
+
+  getHandicap_game_score(member_id){
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"getHandicap_game_score",member_id:member_id}).pipe(map((res)=>res.json()));
   }
 
   getHandicap_game_play(member_id){
@@ -93,15 +104,26 @@ export class TodoService {
     return this.http2.post<myData>(this.local+'/api/dataAdjustSport.php',{ac:"saveHandicap",hd_id:id,member_id:member_id});
   }
 
+  saveHandicapScore(member_id,hd_id,data_score_home,data_score_away){
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http2.post<myData>(this.local+'/api/dataAdjustSport.php',{ac:"saveHandicapScore",hd_id:hd_id,member_id:member_id,data_score_home:data_score_home,data_score_away:data_score_away});
+  }
   saveDataGame(m_id,data){
       
     //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
     return this.http2.post<myData>(this.local+'/api/dataAdjustSport.php',{ac:"saveDataGame",m_id:m_id,data:data});
   }
-  saveDataGame_step(m_id,data){
+
+  saveDataGame_step(m_id,data){ // old_calDataGame_step
       
     //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
     return this.http2.post<myData>(this.local+'/api/dataAdjustSport.php',{ac:"saveDataGame_step",m_id:m_id,data:data});
+  }
+
+  calDataGame_step(m_id,data){
+      
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http2.post<myData>(this.local+'/api/dataAdjustSport.php',{ac:"calDataGame_step",m_id:m_id,data:data});
   }
 
 
@@ -141,6 +163,11 @@ export class TodoService {
   getDateGame_played(m_id){
     //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
     return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"getDateGame_played",m_id:m_id}).pipe(map((res)=>res.json()));
+  }
+
+  getDateGameScore_played(m_id){
+    //return this.httpjson.post('http://localhost:4800',{ac:"getMember"}).pipe(map((res)=>res.json()));
+    return this.http.post(this.local+'/api/dataAdjustSport.php',{ac:"getDateGameScore_played",m_id:m_id}).pipe(map((res)=>res.json()));
   }
 
   check_play(m_id){

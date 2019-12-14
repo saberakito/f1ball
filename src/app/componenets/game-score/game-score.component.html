@@ -1,0 +1,157 @@
+<ng-container *ngIf="checkHaveGame!='0'&&checkHaveGame!=null">
+        <div class="team_area">
+                        <h2 style="color: white;">โปรแกรมจัดสเต็ปบอล</h2>       
+                        <table class="table table-white table-striped">
+                          <thead>
+                            <tr>
+                              <th>เวลา</th>
+                              <th>เหย้า</th>
+                              <th>ราคา</th>
+                              <th>เยือน</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                                <ng-container *ngFor="let games of users; index as  i; first as isFirst;let l = count">
+                                        <tr>
+                                            <td>{{games.hd_time}}</td>
+                                            <td>
+                                                <div id="{{games.hd_home}}">
+                                                    <ng-container *ngIf="games.hg_team_win==null||games.hg_team_win==''">
+                                                            <!-- <input  type="radio" (click)="selectTeam($event)"  value="1" name="{{games.hd_id}}"   ngModel="{{games.hd_id}}" id="defaultGroupExample_{{i}}" > -->
+                                                            <input type="text" name="{{games.hd_id}}_home_played"  value="{{games.score_home}}"   id="defaultGroupExample_{{i}}" class="form-control" style="width: 45px; float: left;text-align: center;" readonly>
+                                                    </ng-container>
+                                                    <label  for="defaultGroupExample_{{i}}">&nbsp; {{games.hd_home}} </label>
+                                                </div>
+                                                <ng-container *ngIf="games.hg_team_win=='1'">
+                                                    <span _ngcontent-ehk-c2="" class="badge badge-pill badge-success" style="font-weight: 400;">  </span>
+                                                </ng-container>
+                                            </td>
+                                            <td>{{games.hd_handicap}}</td>
+                                            <td>
+                                                <div id="{{games.hd_away}}">
+                                                    <ng-container *ngIf="games.hg_team_win==null||games.hg_team_win==''">
+                                                        <!-- <input  type="radio" (click)="selectTeam($event)" value="2" name="{{games.hd_id}}"  ngModel="{{games.hd_id}}" id="defaultGroupExample3_{{i}}"> -->
+                                                        <input type="text"  name="{{games.hd_id}}_away_played" value="{{games.score_away}}"   id="defaultGroupExample_{{i}}" class="form-control" style="width: 45px; float: left;text-align: center;" readonly>
+                                                    </ng-container>
+                                                    <label  for="defaultGroupExample3_{{i}}">&nbsp; {{games.hd_away}} </label>
+                                                </div>
+                                                <ng-container *ngIf="games.hg_team_win=='2'">
+                                                        <span _ngcontent-ehk-c2="" class="badge badge-pill badge-success" style="font-weight: 400;">  </span>
+                                                </ng-container>
+                                            </td>
+                                        </tr>
+                                </ng-container>
+                          </tbody>
+                        </table>
+        </div>
+        
+    
+</ng-container>
+
+<ng-container *ngIf="checkHaveGame=='0'||checkHaveGame==''||checkHaveGame==null">
+          <form #form='ngForm' class="form-horizontal" >
+              <div class="team_area">
+                              <h2 style="color: white;">โปรแกรมจัดสเต็ปบอล</h2>       
+                              <table class="table table-white table-striped">
+                                <thead>
+                                  <tr>
+                                    <th>เวลา</th>
+                                    <th>เหย้า</th>
+                                    <th>ราคา</th>
+                                    <th>เยือน</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                      <ng-container *ngFor="let games of users; index as  i; first as isFirst;let l = count">
+                                              <tr>
+                                                  <td>{{games.hd_time}}</td>
+                                                  <td>
+                                                      <div id="{{games.hd_home}}">
+                                                          <ng-container *ngIf="games.hg_team_win==null||games.hg_team_win==''">
+                                                                  <!-- <input  type="radio" (click)="selectTeam($event)"  value="1" name="{{games.hd_id}}"   ngModel="{{games.hd_id}}" id="defaultGroupExample_{{i}}" > -->
+                                                                  <input type="text" name="{{games.hd_id}}_home"  value=""  [ngModel]="score_team1_home" id="defaultGroupExample_{{i}}" class="form-control" style="width: 45px; float: left;text-align: center;">
+                                                          </ng-container>
+                                                          <label  for="defaultGroupExample_{{i}}">&nbsp; {{games.hd_home}} </label>
+                                                      </div>
+                                                      <ng-container *ngIf="games.hg_team_win=='1'">
+                                                          <span _ngcontent-ehk-c2="" class="badge badge-pill badge-success" style="font-weight: 400;">  </span>
+                                                      </ng-container>
+                                                  </td>
+                                                  <td>{{games.hd_handicap}}</td>
+                                                  <td>
+                                                      <div id="{{games.hd_away}}">
+                                                          <ng-container *ngIf="games.hg_team_win==null||games.hg_team_win==''">
+                                                              <!-- <input  type="radio" (click)="selectTeam($event)" value="2" name="{{games.hd_id}}"  ngModel="{{games.hd_id}}" id="defaultGroupExample3_{{i}}"> -->
+                                                              <input type="text"  name="{{games.hd_id}}_away"  value="" [ngModel]="score_team1_away" id="defaultGroupExample_{{i}}" class="form-control" style="width: 45px; float: left;text-align: center;">
+                                                          </ng-container>
+                                                          <label  for="defaultGroupExample3_{{i}}">&nbsp; {{games.hd_away}} </label>
+                                                      </div>
+                                                      <ng-container *ngIf="games.hg_team_win=='2'">
+                                                              <span _ngcontent-ehk-c2="" class="badge badge-pill badge-success" style="font-weight: 400;">  </span>
+                                                      </ng-container>
+                                                  </td>
+                                              </tr>
+                                      </ng-container>
+                                </tbody>
+                              </table>
+
+                              <div _ngcontent-wtm-c3="" class="col-md-12 col-sm-12">
+                                  <div _ngcontent-wtm-c3="" class="card mb-3">
+                                      <div _ngcontent-wtm-c3="" class="card-body">
+                                        <div  class="btn_ " style="text-align: left;">
+                                            <a (click)="sendDataGame(form)" class="badge badge-primary btn_game hover" style="font-size: 1.2em; font-weight:100;color:white; padding-right:30px;padding-left:30px;padding-top:15px;padding-bottom:15px;">ส่งผลทาย</a>
+                                            
+                                            <a (click)="resetStep()" class="badge badge-danger btn_game hover" style="margin-left:30px; font-size: 1.2em; font-weight:100;color:white; padding-right:30px;padding-left:30px;padding-top:15px;padding-bottom:15px;">ล้างข้อมูล</a>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                              
+              </div>
+              
+          
+      <!-- <div  class="col-md-12 col-sm-12 action_area">
+          <div class="container">
+              <div  class="card mb-3">
+                  <div  class="card-body">
+                      <div class="detailLeft">
+                              <div class="form-group">
+                                  <label for="teded1">ทีเด็ดชุดที่ 1</label>
+                                  <input type="text" readonly (keyup)="delete_item($event)" class="form-control tded_input" id="tded1">
+                              </div> 
+                              <div class="form-group">
+                                  <input type="text" readonly (keyup)="delete_item($event)" class="form-control tded_input" id="tded2">
+                              </div>
+                              <div class="form-group">
+                                  <input type="text" readonly (keyup)="delete_item($event)" class="form-control tded_input" id="tded3">
+                              </div>
+
+                      </div>
+                      <div class="detailRight">
+                              <div class="form-group">
+                                  <label for="email">ทีเด็ดชุดที่ 2</label>
+                                  <input type="text" readonly (keyup)="delete_item($event)" class="form-control tded_input" id="tded4">
+                              </div> 
+                              <div class="form-group">
+                                  <input type="text" readonly (keyup)="delete_item($event)" class="form-control tded_input" id="tded5">
+                              </div>
+                              <div class="form-group">
+                                  <input type="text" readonly (keyup)="delete_item($event)" class="form-control tded_input" id="tded6">
+                              </div>
+                      </div>
+                          
+                      <div  class="btn_" style="text-align: left;">
+                          <a (click)="sendDataGame(form)" class="badge badge-primary btn_game hover" style="font-size: 1.2em; font-weight:100;color:white; padding-right:30px;padding-left:30px;padding-top:15px;padding-bottom:15px;">ส่งผลทาย</a>
+                          
+                          <a (click)="resetStep()" class="badge badge-danger btn_game hover" style="margin-left:30px; font-size: 1.2em; font-weight:100;color:white; padding-right:30px;padding-left:30px;padding-top:15px;padding-bottom:15px;">ล้างข้อมูล</a>
+                          </div>
+                  </div>
+              </div>
+          </div>
+      </div> -->
+   </form>
+  <!-- </ng-container> -->
+
+</ng-container>

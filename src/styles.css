@@ -3,6 +3,9 @@
  body{
   font-family: "Kanit", "Zawgyi-One", "Tahoma", sans-serif;
 }
+.hover:hover{
+  cursor: pointer;
+}
 .removeBG{
   background-image: unset !important;
   background-color: #E8E6EA !important;

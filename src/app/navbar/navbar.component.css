@@ -53,14 +53,14 @@
     }
     .topnav .container{
       width: 960px;
-      padding-right: 364px;
+      padding-right: 0px;
     }
   }
   @media screen and (min-width: 1100px) {
     
     .topnav .container{
       width: 960px;
-      padding-right: 364px;
+      padding-right: 0px;
     }
     .topnav a{
       padding-top: 15px;
@@ -117,7 +117,7 @@
     } */
     .topnav .container{
       width: 1140px;
-      padding-right: 364px;
+      padding-right: 0px;
     }
   }
   
@@ -175,7 +175,7 @@
     }
     .topnav .container{
       width: 1140px;
-      padding-right: 364px;
+      padding-right: 0px;
     }
   }
 
@@ -186,7 +186,7 @@
     }
     .topnav .container{
       width: 1140px;
-      padding-right: 364px;
+      padding-right: 0px;
     }
   }
 
@@ -221,7 +221,7 @@
     }
     .topnav .container{
       width: 1140px;
-      padding-right: 364px;
+      padding-right: 0px;
     }
     
     /* .width_6{

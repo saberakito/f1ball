@@ -54,7 +54,9 @@ import { ContactComponent } from './components/contact/contact.component';
 import {ProgressBarModule} from "angular-progress-bar";
 import { GameComponent } from './components/game/game.component';
 import { TdedComponent } from './components/tded/tded.component';
-import { GameTdedComponent } from './components/game-tded/game-tded.component'
+import { GameTdedComponent } from './components/game-tded/game-tded.component';
+import { LivescoreComponent } from './components/livescore/livescore.component';
+import { GameScoreComponent } from './componenets/game-score/game-score.component'
 const appRoutes:Routes = [
   
   {path:"home", component:HomeComponent, canActivate:[AuthGuard]},
@@ -74,8 +76,10 @@ const appRoutes:Routes = [
   {path:"dashboard", component:DashboardComponent, canActivate:[AuthGuard]},
   {path:"result", component:ResultComponent, canActivate:[AuthGuard]},
   {path:"game/:id", component:GameComponent, canActivate:[AuthGuard]},
-  {path:"game_tded/:id", component:GameTdedComponent, canActivate:[AuthGuard]},
+  {path:"game_step", component:GameTdedComponent, canActivate:[AuthGuard]},
   {path:"tded", component:TdedComponent, canActivate:[AuthGuard]},
+  {path:"livescore", component:LivescoreComponent, canActivate:[AuthGuard]},
+  {path:"game_score/:id", component:GameScoreComponent, canActivate:[AuthGuard]},
 
   {path:"news", children:[
     {path:"news-detail/:id", component:NewsDetailComponent, canActivate:[AuthGuard]}
@@ -121,7 +125,9 @@ const appRoutes:Routes = [
     ContactComponent,
     GameComponent,
     TdedComponent,
-    GameTdedComponent
+    GameTdedComponent,
+    LivescoreComponent,
+    GameScoreComponent
   ],
   imports: [
     ChartModule,

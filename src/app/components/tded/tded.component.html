@@ -1,6 +1,152 @@
-<div _ngcontent-jft-c2="" class="">
-    <div _ngcontent-jft-c2="" class="container">
-        <div _ngcontent-jft-c2="" class="col-md-12" style="padding-left:5px;padding-right:5px;">
+<div  class="">
+    <div  class="container" style="padding-left: 15px; padding-right: 15px;">
+            <div style="color: white; font-size: 2em;padding-left:15px;">ทีเด็ดบอลเต็งวันนี้</div>
+            <div style="overflow-x:auto; padding-bottom: 20px;">
+                    <table>
+                      <tr>
+                        <th style="width: 100px;">เวลา</th>
+                        <th style="width: 33.33%">ทีม</th>
+                        <th style="width: 33.33%">สกอร์</th>
+                        <th style="width: 33.33%">เปอร์เซน</th>
+                      </tr>
+                      
+                      
+                      <ng-container *ngFor="let han of users; index as  i; first as isFirst;let l = count">
+                            <tr>
+                                <td style="text-align: right;">{{han.hd_time}}</td>
+                                <td>
+                                    <span _ngcontent-osx-c2="" class="result_score" style="display:block; color: black;" id="{{han.hd_id}}_1">
+                                        <span _ngcontent-osx-c2="" style="color: rgb(78, 160, 78);"> 
+                                                <ng-container *ngIf="han.hd_result_win=='1'">
+                                                    {{han.hd_home}}
+                                                    <ng-container *ngIf="han.hd_home_star=='1'">
+                                                        ต่อ
+                                                    </ng-container>
+                                                    <ng-container *ngIf="han.hd_home_star!='1'">
+                                                        รอง
+                                                    </ng-container>
+                                                    {{han.hd_handicap}}
+                                                </ng-container>
+                                                <ng-container *ngIf="han.hd_result_win=='2'">
+                                                    {{han.hd_away}}
+                                                    <ng-container *ngIf="han.hd_away_star=='1'">
+                                                        ต่อ 
+                                                    </ng-container>
+                                                    <ng-container *ngIf="han.hd_away_star!='1'">
+                                                        รอง 
+                                                    </ng-container>
+                                                    {{han.hd_handicap}}
+                                                </ng-container>
+                                        </span>
+                                    </span>
+                                </td>
+                                <td>{{han.hd_result_hl}}  {{han.hd_hl}}</td>
+                                <td>
+                                    <progress-bar style="display:block; " class="result_score" id="{{han.hd_id}}_4" [progress]="han.hd_result_percent" [color]="'#488aff'"></progress-bar>
+                                </td>
+                            </tr>
+                      </ng-container>
+                      
+                    </table>
+                  </div>
+
+
+
+                  <div style="color: white; font-size: 2em;padding-left:15px;">สรุปผลทีเด็ด</div>
+                  <div style="overflow-x:auto; padding-bottom: 20px;">
+                        <table>
+                          <tr>
+                            <th style="width: 100px;">เวลา</th>
+                            <th style="width: 33.33%">ทีม</th>
+                            <th style="width: 33.33%">สกอร์</th>
+                            <th style="width: 33.33%">ผล</th>
+                          </tr>
+                          <ng-container *ngFor="let han of yesterdays; index as  i; first as isFirst;let l = count">
+                                <tr>
+                                    <td style="text-align: right;">{{han.hd_time}}</td>
+                                    <td>
+                                        <span _ngcontent-osx-c2="" class="result_score" style="display:block; color: black;" id="{{han.hd_id}}_1">
+                                            <span _ngcontent-osx-c2="" style="color: rgb(78, 160, 78);"> 
+                                                    <ng-container *ngIf="han.hd_result_win=='1'">
+                                                        {{han.hd_home}}
+                                                        <ng-container *ngIf="han.hd_home_star=='1'">
+                                                            ต่อ
+                                                        </ng-container>
+                                                        <ng-container *ngIf="han.hd_home_star!='1'">
+                                                            รอง
+                                                        </ng-container>
+                                                        {{han.hd_handicap}}
+                                                    </ng-container>
+                                                    <ng-container *ngIf="han.hd_result_win=='2'">
+                                                        {{han.hd_away}}
+                                                        <ng-container *ngIf="han.hd_away_star=='1'">
+                                                            ต่อ 
+                                                        </ng-container>
+                                                        <ng-container *ngIf="han.hd_away_star!='1'">
+                                                            รอง 
+                                                        </ng-container>
+                                                        {{han.hd_handicap}}
+                                                    </ng-container>
+                                                    <ng-container *ngIf="han.hd_result_cal=='0'">
+                                                            <img  alt="" class="icon_hl" src="assets/images/icon/lose.png">
+                                                    </ng-container>
+                                                    <ng-container *ngIf="han.hd_result_cal=='1'">
+                                                            <img  alt="" class="icon_hl" src="assets/images/icon/lose.png">
+                                                    </ng-container>
+                                                    <ng-container *ngIf="han.hd_result_cal=='2'">
+                                                            <img  alt="" class="icon_hl" src="assets/images/icon/aways.png">
+                                                    </ng-container>
+                                                    <ng-container *ngIf="han.hd_result_cal=='3'">
+                                                            <img  alt="" class="icon_hl" src="assets/images/icon/win.png">
+                                                    </ng-container>
+                                                    <ng-container *ngIf="han.hd_result_cal=='4'">
+                                                            <img  alt="" class="icon_hl" src="assets/images/icon/win.png">
+                                                    </ng-container>
+                                            </span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        {{han.hd_result_hl}}  {{han.hd_hl}}
+                                        <ng-container *ngIf="han.hd_real_result!=''&&han.hd_real_result!=null">
+                                            <ng-container *ngIf="han.hd_result_hl_stat=='1'||han.hd_result_hl_stat=='2'">
+                                                <img  alt="" class="icon_hl" src="assets/images/icon/lose.png">
+                                            </ng-container> 
+                                            <ng-container *ngIf="han.hd_result_hl_stat=='3'">
+                                                <img  alt="" class="icon_hl" src="assets/images/icon/aways.png">
+                                            </ng-container> 
+                                            <ng-container *ngIf="han.hd_result_hl_stat=='4'||han.hd_result_hl_stat=='5'">
+                                                <img  alt="" class="icon_hl" src="assets/images/icon/win.png">
+                                            </ng-container> 
+                                        </ng-container>
+                                    </td>
+                                    <td>
+                                        <ng-container *ngIf="han.hd_real_result!=''&&han.hd_real_result!=null">
+                                                <!-- <ng-container *ngIf="han.hd_result_cal=='0'">
+                                                    <span  class="result_score_" style="display: block;color: #C40514;">{{han.hd_real_result}} </span>
+                                                </ng-container>
+                                                <ng-container *ngIf="han.hd_result_cal=='1'">
+                                                    <span  class="result_score_" style="display: block;color: orangered;">{{han.hd_real_result}} </span>
+                                                </ng-container>
+                                                <ng-container *ngIf="han.hd_result_cal=='2'">
+                                                    <span  class="result_score_" style="display: block;color: #2E44AE;">{{han.hd_real_result}} </span>
+                                                </ng-container>
+                                                <ng-container *ngIf="han.hd_result_cal=='3'">
+                                                    <span  class="result_score_" style="display: block;color: greenyellow;">{{han.hd_real_result}}</span>
+                                                </ng-container>
+                                                <ng-container *ngIf="han.hd_result_cal=='4'">
+                                                    <span  class="result_score_" style="display: block;color: #01D829;">{{han.hd_real_result}}</span>
+                                                </ng-container> -->
+                                                <span  class="result_score_" style="display: block;color: black;">{{han.hd_real_result}} </span>
+                                        </ng-container>
+                                        
+                                    </td>
+                                </tr>
+                          </ng-container>
+                          
+                        </table>
+                      </div>
+                  
+        <!-- <div _ngcontent-jft-c2="" class="col-md-12" style="padding-left:5px;padding-right:5px;">
             <table _ngcontent-jft-c2="" class="table table-striped tablespac" style="color: white;margin-top:10px;">
                 <thead _ngcontent-jft-c2="">
                     <tr _ngcontent-jft-c2="">
@@ -13,7 +159,7 @@
 
 
                         <ng-container *ngFor="let han of users; index as  i; first as isFirst;let l = count">
-                            <!-- <ng-container *ngIf="i==0"> -->
+                            
                                     <tr _ngcontent-osx-c2="" class="tab_table" style="min-height: 62px;">
                                             <td _ngcontent-osx-c2="" class="hidden" style="min-height: 62px;overflow: hidden;">{{han.hd_time}}</td>
                                             <td _ngcontent-osx-c2="">
@@ -60,25 +206,25 @@
                                                 <img _ngcontent-osx-c2="" class="icon_loading" src="/assets/img/icon/08.gif" style="width:25px;height:25px;display:none;" id="{{han.hd_id}}_1">
                                                 
                                                 <ng-container *ngIf="han.hdd_display!='2'">
-                                                    <!-- <span _ngcontent-osx-c2="" class="icon_loading" id="{{han.hd_id}}_1">-</span> -->
+                                                  
                                                 </ng-container>
                                                
                                                 <span _ngcontent-osx-c2="" class="result_score" style="display:block; color: black;" id="{{han.hd_id}}_1">
-                                                        <span _ngcontent-osx-c2="" style="color: rgb(98, 241, 98);"> 
-                                                                <ng-container *ngIf="han.hd_result_win=='1'">
-                                                                        {{han.hd_home}}
-                                                                </ng-container>
-                                                                <ng-container *ngIf="han.hd_result_win=='2'">
-                                                                        {{han.hd_away}}
-                                                                </ng-container>
-                                                        </span>
+                                                    <span _ngcontent-osx-c2="" style="color: rgb(98, 241, 98);"> 
+                                                            <ng-container *ngIf="han.hd_result_win=='1'">
+                                                                {{han.hd_home}}
+                                                            </ng-container>
+                                                            <ng-container *ngIf="han.hd_result_win=='2'">
+                                                                {{han.hd_away}}
+                                                            </ng-container>
                                                     </span>
+                                                </span>
                                                 
                                             </td>
                                             <td _ngcontent-osx-c2="" class="classTD">
                                                 <img _ngcontent-osx-c2="" class="icon_loading" src="/assets/img/icon/08.gif" style="width:25px;height:25px;display:none;" id="{{han.hd_id}}_2">
                                                 <ng-container *ngIf="han.hdd_display!='2'">
-                                                    <!-- <span _ngcontent-osx-c2="" class="icon_loading" id="{{han.hd_id}}_2">-</span> -->
+                                                    
                                                 </ng-container>
                                                 
                                                 <span _ngcontent-osx-c2="" class="result_score" style="display:block; color: white;" id="{{han.hd_id}}_2">{{han.hd_result_hl}}</span>
@@ -86,7 +232,7 @@
                                             <td _ngcontent-osx-c2="" class="classTD">
                                                 <img _ngcontent-osx-c2="" class="icon_loading" src="/assets/img/icon/08.gif" style="width:25px;height:25px;display:none;" id="{{han.hd_id}}_3">
                                                 <ng-container *ngIf="han.hdd_display!='2'">
-                                                    <!-- <span _ngcontent-osx-c2="" class="icon_loading" id="{{han.hd_id}}_3">-</span> -->
+                                                    
                                                 </ng-container>
                                               
                                                 <span _ngcontent-osx-c2="" class="result_score" style="display:block; color: white;" id="{{han.hd_id}}_3">{{han.hd_result_home}} : {{han.hd_result_away}}</span>
@@ -98,11 +244,11 @@
                                             </td>
                                         </tr>
                             </ng-container>
-                        <!-- </ng-container> -->
+                       
 
                         
                 </tbody>
             </table>
-        </div>
+        </div> -->
     </div>
 </div>

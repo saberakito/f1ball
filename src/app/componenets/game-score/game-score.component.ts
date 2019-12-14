@@ -5,12 +5,12 @@ import {ActivatedRoute } from '@angular/router';
 import { NgImageSliderComponent } from 'ng-image-slider';
 
 @Component({
-  selector: 'app-game-tded',
-  templateUrl: './game-tded.component.html',
-  styleUrls: ['./game-tded.component.css']
+  selector: 'app-game-score',
+  templateUrl: './game-score.component.html',
+  styleUrls: ['./game-score.component.css']
 })
 
-export class GameTdedComponent implements OnInit {
+export class GameScoreComponent implements OnInit {
 
   constructor(private route:ActivatedRoute,private todoServcie:TodoService,private router:Router) { }
   @ViewChild('nav') slider: NgImageSliderComponent;
@@ -21,7 +21,14 @@ export class GameTdedComponent implements OnInit {
   options = {
     fullWidth: true
   };
-  
+  _home0:any = '';
+  _home1:any = '';
+  score_team1_home:any;
+  score_team1_away:any;
+
+  score_team2_home:any;
+  score_team2_away:any;
+
   public member_name:string;
   public member_code_tran:string;
   public member_id:string;
@@ -44,22 +51,11 @@ export class GameTdedComponent implements OnInit {
   sub:any;
   check_game_start:any = 0;
   ngOnInit() {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        var check_url = event.url.split("/")[2];
-        if(check_url=='register'||check_url=='deposit'||check_url=='withdraw'){
-          this.showHeader = false;
-        }else{
-          this.showHeader = true;
-        }
-      //  this.showHeader = this.activatedRoute.firstChild.snapshot.data.showHeader !== false;
-      }
-    });
 
     this.sub = this.route.params.subscribe(params => {
       this.id =  params['id'];
     });
-
+    debugger;
     if(this.id!=null&&this.id!=''){
       this.todoServcie.ValidateUserLink(this.id).subscribe(data => {
         
@@ -81,59 +77,20 @@ export class GameTdedComponent implements OnInit {
       });
     }
 
-    
-    this.bsInlineValue = new Date();
+
     if(localStorage.data_member!=null){
       var objArray = JSON.parse(localStorage.data_member);
       this.member_name = objArray.member_code;
       this.member_id = objArray.member_id;
       this.member_code_tran = objArray.member_code_tran;
-
-
-      this.todoServcie.check_play_step(this.member_id).subscribe((response1)=>{
-        
-        if(response1.data==true){
-          this.todoServcie.get_step(this.member_id).subscribe((response)=>{
-            if(response.success!=false&&response.success!=null){
-              if(response.data[0].hg_team_win!=null && response.data[0].hg_team_win!=''){
-                this.checkBtn = '1';
-              }
-              this.countGameStep = response.data.length;
-              this.steps = response.data;
-              this.check_game_start = '1';
-              this.todoServcie.getHandicap_game_play_step(this.member_id).subscribe((response)=>{
-                  this.hand_steps = response.data;
-                  console.log(this.hand_steps);
-              });
-            }else{
-              this.checkBtn = '1';
-            }
-          });
-        }else{
-          this.todoServcie.getHandicap_game_step(this.member_id).subscribe((response)=>{
-            if(response.success!=false&&response.success!=null){
-              if(response.data[0].hg_team_win!=null && response.data[0].hg_team_win!=''){
-                this.checkBtn = '1';
-              }
-              console.log(response.data[0]);
-              this.check_game_start = '1';
-            //  this.countGameStep = response.data.length;
-              this.users = response.data;
-            }else{
-              console.log(1);
-              
-              this.checkBtn = '1';
-            }
-          });
-        }
-      });
+      
+      
+       
+      this.start_page_game_score();
+      
     }
 
-    this.todoServcie.getDateGame_played(this.member_id).subscribe((response)=>{
-     // debugger;
-      this.checkHaveGame = response.data.length;
-      this.btnCheckGames = response.data;
-    });
+    
 
 
     
@@ -148,6 +105,36 @@ export class GameTdedComponent implements OnInit {
       //this.users = response.data;
 
     });
+  }
+
+
+  start_page_game_score(){
+    this.todoServcie.getDateGameScore_played(this.member_id).subscribe((response1)=>{
+      // debugger;
+       this.checkHaveGame = response1.data.length;
+       this.todoServcie.getHandicap_game_score(this.member_id).subscribe((response)=>{
+          if(response.success!=false&&response.success!=null){
+            
+            
+            for(var i=0;i<response1.data.length;i++){
+              // $('[ng-reflect-name="'+response1.data[i].hs_hd_id+'_home_played"]').val(response1.data[i].hs_home_score);
+              // $('[ng-reflect-name="'+response1.data[i].hs_hd_id+'_away_played"]').val(response1.data[i].hs_away_score);
+             // debugger;
+              if(response.data[i]['score_home']==null){
+                response.data[i]['score_home'] = [];
+              }
+              if(response.data[i]['score_away']==null){
+                response.data[i]['score_away'] = [];
+              }
+              response.data[i]['score_home'] = response1.data[i].hs_home_score;
+              response.data[i]['score_away'] = response1.data[i].hs_away_score;
+            }
+          // debugger;
+            this.users = response.data;
+          }
+        });
+        
+     });
   }
 
   public delete_item(e){
@@ -231,34 +218,68 @@ export class GameTdedComponent implements OnInit {
   }
   public check_value_length:any;
   public sendDataGame(form){
-    
       var count_check =0;
-      for (var index = 0; index < Object.keys(form.value).length; ++index) {
-        this.check_value_length = Object.values(form.value)[index];
-        if(this.check_value_length.length==1){
-          count_check = count_check+1;
+      var arrayData =[];
+      if (confirm("ส่งผลทายหรือไม่?")== true) {
+        var count_check =0;
+        for (var index = 0; index < Object.keys(form.value).length; ++index) {
+          this.check_value_length = Object.values(form.value)[index];
+          if(this.check_value_length!=null){
+            count_check = count_check+1;
+          }
         }
-      }
-      if(count_check!=6){
-        alert('กรุณาเลือก "ทีมชนะ" ให้ครบ 6 ทีมก่อนส่งข้อมูล');
-        return;
-      }else{
-       // if (confirm("ส่งผลทายหรือไม่?")== true) {
-          this.todoServcie.calDataGame_step(this.member_id,form.value).subscribe(data=>{
-          //  debugger;
-           this.steps = data['array_bill'];
-           this.countGameStep = data['array_bill'].length;
-          this.hand_steps = data.data;
-           console.log(data.data);
-            if(data.success==true){
-             // alert(data.message);
-            //  location.reload();
-            }else{
-              alert('บันทึกข้อมูลผิดพลาด');
+        if(count_check==4){
+          for (var index = 0; index < Object.keys(form.value).length; ++index) {
+            var hd_id  = Object.keys(form.value)[index].split("_")[0];
+            var h_a  = Object.keys(form.value)[index].split("_")[1];
+            var data_score = Object.values(form.value)[index];
+            if(h_a=='home'){
+              if(arrayData[hd_id]==null){
+                arrayData[hd_id] = [];
+              }
+              arrayData[hd_id]['home'] = data_score;
+            }else if(h_a=='away'){
+              if(arrayData[hd_id]==null){
+                arrayData[hd_id] = [];
+              }
+              arrayData[hd_id]['away'] = data_score;
             }
-          });
-      //  }
-      }
+          }
+          for (var index = 0; index < Object.keys(arrayData).length; ++index) {
+            var hd_id  =  Object.keys(arrayData)[index];
+            var data_score_home = arrayData[hd_id]['home'];
+            var data_score_away = arrayData[hd_id]['away'];
+            debugger;
+            this.todoServcie.saveHandicapScore(this.member_id,hd_id,data_score_home,data_score_away).subscribe((response)=>{
+            // debugger;
+            this.start_page_game_score();
+            });
+          }
+        }else{
+          alert('ใส่ข้อมูลให้ครบ');
+        }
+    }
+      
+      // if(count_check!=6){
+      //   alert('กรุณาเลือก "ทีมชนะ" ให้ครบ 6 ทีมก่อนส่งข้อมูล');
+      //   return;
+      // }else{
+      //  // if (confirm("ส่งผลทายหรือไม่?")== true) {
+      //     this.todoServcie.calDataGame_step(this.member_id,form.value).subscribe(data=>{
+      //     //  debugger;
+      //      this.steps = data['array_bill'];
+      //      this.countGameStep = data['array_bill'].length;
+      //     this.hand_steps = data.data;
+      //      console.log(data.data);
+      //       if(data.success==true){
+      //        // alert(data.message);
+      //       //  location.reload();
+      //       }else{
+      //         alert('บันทึกข้อมูลผิดพลาด');
+      //       }
+      //     });
+      // //  }
+      // }
     
     
   }
@@ -292,6 +313,8 @@ interface slideData {
 }
 
 interface Handicap {
+  score_home:any;
+  score_away:any;
   dateNew: string
   hd_away: string
   hd_away_star: string

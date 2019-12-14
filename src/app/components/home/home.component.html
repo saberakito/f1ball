@@ -17,10 +17,19 @@
 
             <table _ngcontent-jft-c2="" class="table table-striped tablespac" style="color: white;margin-top:10px;">
                 <thead _ngcontent-jft-c2="">
-                    <tr _ngcontent-jft-c2="">
-                        <th _ngcontent-jft-c2="" class="hidden"><img _ngcontent-jft-c2="" class="icon_header" src="assets/images/icon/time.png"></th>
+                    <tr _ngcontent-jft-c2="" style="background: black;">
+                        <th _ngcontent-jft-c2="" class="hidden">
+                            เวลา
+                        </th>
+                        <th _ngcontent-jft-c2="">
+                            เจ้าบ้าน
+                        </th>
+                        <th _ngcontent-jft-c2="">
+                            ทีมเยือน
+                        </th>
+                        <!-- <th _ngcontent-jft-c2="" class="hidden"><img _ngcontent-jft-c2="" class="icon_header" src="assets/images/icon/time.png"></th>
                         <th _ngcontent-jft-c2=""><img _ngcontent-jft-c2="" class="icon_header" src="assets/images/icon/home.png"></th>
-                        <th _ngcontent-jft-c2=""><img _ngcontent-jft-c2="" class="icon_header" src="assets/images/icon/away.png"></th>
+                        <th _ngcontent-jft-c2=""><img _ngcontent-jft-c2="" class="icon_header" src="assets/images/icon/away.png"></th> -->
                     </tr>
                 </thead>
                 <tbody _ngcontent-jft-c2="" class="table_font_size" style="min-height: 62px;">
@@ -28,7 +37,7 @@
 
                         <ng-container *ngFor="let han of users; index as  i; first as isFirst;let l = count">
                             <!-- <ng-container *ngIf="i==0"> -->
-                                    <tr _ngcontent-osx-c2="" class="tab_table" style="min-height: 62px;">
+                                    <tr _ngcontent-osx-c2="" class="tab_table" style="min-height: 62px; line-height: 1;">
                                             <td _ngcontent-osx-c2="" class="hidden" style="min-height: 62px;overflow: hidden;">{{han.hd_time}}</td>
                                             <td _ngcontent-osx-c2="">
                                                 <ng-container *ngIf="han.hd_away_star=='1'">
@@ -63,11 +72,7 @@
                                             <td _ngcontent-osx-c2="" class=" " colspan="2"> {{han.hd_hl}} </td>
                                         </tr>
                 
-                                        <tr _ngcontent-osx-c2="" style="background: #636363; color: white;">
-                                            <td _ngcontent-osx-c2="" style="border-top: 0;width: 300px;">Win</td>
-                                            <td _ngcontent-osx-c2="" style="border-top: 0;width: 100px;">HI/LO</td>
-                                            <td _ngcontent-osx-c2="" style="border-top: 0;width: 200px;">Score</td>
-                                        </tr>
+                                      
                 
                                         <tr _ngcontent-osx-c2="" style="background: #636363; color: white;">
                                             <td _ngcontent-osx-c2="" class="classTD">

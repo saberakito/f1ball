@@ -10,12 +10,31 @@ export class TdedComponent implements OnInit {
 
   constructor(private todoServcie:TodoService,private router:Router) { }
   public users: Handicap[];
-  
+  public yesterdays: Handicap[];
   ngOnInit() {
     this.todoServcie.getHandicap_tded('').subscribe((response)=>{
-      //debugger;
+     // debugger;
+      console.log(response.data);
+      for(var i =0; i<response.data.length;i++){
+         // debugger;
+          response.data[i].hd_home = response.data[i].hd_home.split("*")[0];
+          response.data[i].hd_away = response.data[i].hd_away.split("*")[0];;
+
+      }
       this.users = response.data;
     });
+
+    this.todoServcie.getHandicap_tded_yesterday('').subscribe((response)=>{
+      // debugger;
+       console.log(response.data);
+       for(var i =0; i<response.data.length;i++){
+          // debugger;
+           response.data[i].hd_home = response.data[i].hd_home.split("*")[0];
+           response.data[i].hd_away = response.data[i].hd_away.split("*")[0];;
+ 
+       }
+       this.yesterdays = response.data;
+     });
   }
 
 }

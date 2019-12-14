@@ -3,16 +3,22 @@
       <div  class="col-md-12" style="padding-left:5px;padding-right:5px;">
           <table  class="table table-striped tablespac" style="color: white;">
               <thead >
-                  <tr >
-                      <th  class="hidden"><img  class="icon_header" src="assets/images/icon/time.png"></th>
-                      <th ><img  class="icon_header" src="assets/images/icon/home.png"></th>
-                      <th ><img  class="icon_header" src="assets/images/icon/away.png"></th>
+                  <tr style="background: black;">
+                    <th  class="hidden">
+                        เวลา
+                    </th>
+                    <th >
+                        เจ้าบ้าน
+                    </th>
+                    <th >
+                        ทีมเยือน
+                    </th>
                   </tr>
               </thead>
               
                 <ng-container *ngFor="let result of results; index as i; first as isFirst;let l = count">
 
-                  <tbody  class="table_font_size" style="min-height: 62px;">
+                  <tbody  class="table_font_size" style="min-height: 62px;  line-height: 0.8;">
                     <tr  class="tab_table" style="min-height: 62px;">
                         <td  class="hidden" style="min-height: 62px;overflow: hidden;">{{result.hd_time}}</td>
                         <td ><span  style="text-decoration: underline;">{{result.hd_home}}</span></td>
@@ -27,11 +33,6 @@
                         <td  class="no_border_top" colspan="1"> {{result.hd_hl}} </td>
                         <td ><img  class="icon_loading" src="/assets/img/icon/08.gif" style="width:25px;height:25px;display:none;" id="{{result.hd_id}}_3">
                           <span  class="result_score" style="display: block;color: white;" id="{{result.hd_id}}_3">{{result.hd_real_result}}</span></td>
-                    </tr>
-                    <tr  style="background: #636363; color: white;">
-                        <td  style="border-top: 0;width: 300px;">Win</td>
-                        <td  style="border-top: 0;width: 100px;">HI/LO</td>
-                        <td  style="border-top: 0;width: 200px;">Score</td>
                     </tr>
                     <tr  style="background: #252525; color: white;">
                         <td  class="classTD"><img  class="icon_loading" src="/assets/img/icon/08.gif" style="width:25px;height:25px;display:none;" id="{{result.hd_id}}_1"><span  class="result_score_" style="color: black;" id="{{result.hd_id}}_1">

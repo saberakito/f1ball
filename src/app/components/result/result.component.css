@@ -1,6 +1,7 @@
 .classTD{
     min-height: 62px;
     height: 70px;
+    line-height: 1.5;
 }
 .textResult{
     float: left;

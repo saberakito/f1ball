@@ -8,14 +8,14 @@
     color:white;
 }
 .footer_bot{
-    padding-top: 0px;
+    padding-top: 12px;
     background: black;
-    height: 92px;
+    height: 50px;
     width: 100%;
     /* margin-top: 31px; */
     position: relative;
+    bottom: -5px;
     z-index: 0;
-    border-top: 42px solid #241E1F;
     display: none;
 }
 .link_footer2:hover{
