@@ -91,7 +91,7 @@ export class GameTdedComponent implements OnInit {
 
 
       this.todoServcie.check_play_step(this.member_id).subscribe((response1)=>{
-        
+      //  debugger;
         if(response1.data==true){
           this.todoServcie.get_step(this.member_id).subscribe((response)=>{
             if(response.success!=false&&response.success!=null){
@@ -103,7 +103,7 @@ export class GameTdedComponent implements OnInit {
               this.check_game_start = '1';
               this.todoServcie.getHandicap_game_play_step(this.member_id).subscribe((response)=>{
                   this.hand_steps = response.data;
-                  console.log(this.hand_steps);
+         //         console.log(this.hand_steps);
               });
             }else{
               this.checkBtn = '1';
@@ -115,12 +115,12 @@ export class GameTdedComponent implements OnInit {
               if(response.data[0].hg_team_win!=null && response.data[0].hg_team_win!=''){
                 this.checkBtn = '1';
               }
-              console.log(response.data[0]);
+           //   console.log(response.data[0]);
               this.check_game_start = '1';
             //  this.countGameStep = response.data.length;
               this.users = response.data;
             }else{
-              console.log(1);
+         //     console.log(1);
               
               this.checkBtn = '1';
             }

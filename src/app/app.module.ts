@@ -44,6 +44,8 @@ import { Manage_dataComponent } from './components/manage_data/manage_data.compo
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 // import { ColorSketchModule } from 'ngx-color/sketch';
 
+
+
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { ResultComponent } from './components/result/result.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';  
@@ -56,7 +58,11 @@ import { GameComponent } from './components/game/game.component';
 import { TdedComponent } from './components/tded/tded.component';
 import { GameTdedComponent } from './components/game-tded/game-tded.component';
 import { LivescoreComponent } from './components/livescore/livescore.component';
-import { GameScoreComponent } from './componenets/game-score/game-score.component'
+import { GameScoreComponent } from './componenets/game-score/game-score.component';
+import { SetGameScoreComponent } from './components/set-game-score/set-game-score.component';
+import { ReportGameComponent } from './components/report-game/report-game.component';
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
+
 const appRoutes:Routes = [
   
   {path:"home", component:HomeComponent, canActivate:[AuthGuard]},
@@ -81,6 +87,9 @@ const appRoutes:Routes = [
   {path:"livescore", component:LivescoreComponent, canActivate:[AuthGuard]},
   {path:"game_score/:id", component:GameScoreComponent, canActivate:[AuthGuard]},
 
+  {path:"report_game", component:ReportGameComponent, canActivate:[AuthGuard]},
+
+  {path:"set_game_score", component:SetGameScoreComponent, canActivate:[AuthGuard]},
   {path:"news", children:[
     {path:"news-detail/:id", component:NewsDetailComponent, canActivate:[AuthGuard]}
   ]},
@@ -127,7 +136,9 @@ const appRoutes:Routes = [
     TdedComponent,
     GameTdedComponent,
     LivescoreComponent,
-    GameScoreComponent
+    GameScoreComponent,
+    SetGameScoreComponent,
+    ReportGameComponent
   ],
   imports: [
     ChartModule,
@@ -144,6 +155,7 @@ const appRoutes:Routes = [
     HttpClientModule,
     NgxPaginationModule,
     SlideshowModule,
+    BsDatepickerModule,
     RouterModule.forRoot(appRoutes,{scrollPositionRestoration: 'enabled'}),
     BrowserAnimationsModule,
     SlickCarouselModule 

@@ -29,6 +29,7 @@
              "../node_modules/slick-carousel/slick/slick-theme.scss",
 			 "../node_modules/aos/dist/aos.css",
 			  "../node_modules/hover.css/css/hover-min.css",
+			  
             ],
             "scripts": [
 				"src/assets/script/script.js",

@@ -1,0 +1,90 @@
+.icon_hl{
+    width: 48px;
+}
+.dateArea{
+    float: left;
+    clear: both;
+    width: 100%;
+}
+
+.input_date_start{
+    margin: 10px 0px 10px 0px;
+}
+.classTD{
+    min-height: 62px;
+    height: 50px;
+}
+.date_picker{
+    width: 250px;
+    margin: 15px
+}
+.no_border_top{
+    border-top: 0px;
+}
+.userArea{
+    padding:15px;
+    float: right;
+    color:white;
+}
+.userArea .name{
+    margin-top:8px;
+    float: right;
+}
+.userArea .credit{
+    margin-top:8px;
+    float: right;
+    margin-left:15px;
+}
+.userArea .logout{
+    float: right;
+    margin-left:15px;
+}
+
+.userArea .logout:hover{
+   cursor: pointer;
+}
+.colorHandicap{
+    background: #757171;
+}
+
+
+
+
+
+.btn_{
+    overflow: hidden;
+    text-align: center;
+}
+
+.btn_ img{
+    width: 265px;
+}
+.scan_td{
+    height: 70px;
+}
+.table_font_size{
+    font-size: 12px;
+}
+
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+        background-color: white;
+    }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+    
+  }
+  
+  tr:nth-child(even){background-color: #f2f2f2 !important;}
+
+@media (min-width: 768px){
+    .table_font_size{
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,103 @@
+<div class="container" style="padding-left: 15px; padding-right: 15px;">
+  <h5 style="color: white;padding-top:10px;">รายงานการเล่นเกม ชนะ/แพ้</h5>
+  <div class="dateArea">
+    <label for="dateStart" style="color: white;float: left;position: relative;padding: 18px; "> วันที่เริ่มต้น </label>
+    <input type="date" bsDate id="dateStart" name="dateStart"  [(ngModel)]="dateStart" class="form-control col-xs-3 input_date_start">
+    <label for="dateStop" style="color: white;float: left;position: relative;padding: 18px; "> วันที่สิ้นสุด </label>
+    <input type="date"  id="dateStop" name="dateStop"  [(ngModel)]="dateStop" class="form-control col-xs-3 input_date_start">
+
+    <div  class="btn btn-primary   hover search_btn" role="button" style="margin: 10px 0px 10px 10px;" aria-pressed="true" (click)="searchData()">ค้นหา</div>
+  </div>
+    <chart [type]="typeChart2"style="background: white;margin-top:15px;" [data]="dataChart3" [options]="optionsChart"></chart>
+
+  <div style="overflow-x:auto; padding-bottom: 20px;float: left;">
+    <table>
+      <tr>
+        <th style="width: 300px;">วันที่</th>
+        <th style="width: 25%">ทีม</th>
+        <th style="width: 25%">ผล</th>
+        <th style="width: 25%">เปอร์เซน</th>
+      </tr>
+      
+      
+     <ng-container *ngFor="let listGamesDate of listGamesDates; index as  i; first as isFirst;let l = count">
+            <tr>
+                <td style="text-align: left; background-color: #ccc;" colspan="4"> {{listGamesDate}}</td>
+            </tr>
+            <ng-container *ngFor="let item of listGames | keyvalue;index as  i;">
+
+              <!-- <tr>
+                  <td colspan="4" style="text-align: left; background-color: #ccc;">
+                  Member ID : {{item|json}}
+                  </td>
+              </tr> -->
+
+
+             <ng-container *ngFor="let item2 of item.value | keyvalue;">
+                
+                <ng-container *ngFor="let item3 of item2.value;index as  i;let j = count ">
+                  <ng-container *ngIf="item3.hg_date==listGamesDate">
+                    <ng-container *ngIf="i==0">
+                      <tr>
+                        <ng-container *ngIf="item2.value[3].win==true">
+                          <td colspan="4" style="text-align: left; background-color: #ccc; color: green;">
+                            Member  : {{item2.key}}
+                            <!-- win counting :{{l}} -->
+                            </td>
+                        </ng-container>
+                        <ng-container *ngIf="item2.value[3].win!=true">
+                          <td colspan="4" style="text-align: left; background-color: #ccc;">
+                             Member ID : {{item2.key}}
+                            <!-- win counting :{{l}} -->
+                            </td>
+                        </ng-container>
+                          
+                      </tr>
+                    </ng-container>
+                    
+                    <tr>
+                      <td>
+                        <!-- {{item3.hg_date}} -->
+                      </td>
+                      <td>
+                      <ng-container *ngIf="item3.hg_team_win=='1'">
+                          เจ้าบ้านชนะ
+                        </ng-container>
+                        <ng-container *ngIf="item3.hg_team_win=='2'">
+                          ทีมเยือนชนะ
+                        </ng-container>
+                        <ng-container *ngIf="item3.hg_team_win=='3'">
+                          เสมอ
+                        </ng-container>
+                      </td>
+                      <td>
+                        {{item3.hd_home}} 
+                        <span style="font-weight: bold;"> 
+                          <ng-container *ngIf="item3.hd_real_result==null||item3.hd_real_result==''">
+                            ไม่มีสกอร์
+                          </ng-container>
+                          
+                          {{item3.hd_real_result}} 
+                        </span>
+                        {{item3.hd_away}} 
+                        <!-- {{item3.hg_hd_id}} -->
+                      </td>
+                      <td>
+                        <ng-container *ngIf="item3.hg_result=='1'">
+                          <span style="color:red">แพ้</span> 
+                        </ng-container>
+                        <ng-container *ngIf="item3.hg_result=='2'">
+                          <span style="color:green">ชนะ</span> 
+                        </ng-container>
+                      </td>
+                    </tr>
+                  </ng-container>
+                </ng-container>
+             
+              </ng-container>
+            </ng-container>
+      </ng-container> 
+      
+    </table>
+  </div>
+</div>

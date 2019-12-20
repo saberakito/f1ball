@@ -7,13 +7,14 @@ import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fr
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
 }
-@Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
-})
 
-export class HomeComponent implements OnInit {
+@Component({
+  selector: 'app-set-game-score',
+  templateUrl: './set-game-score.component.html',
+  styleUrls: ['./set-game-score.component.css']
+})
+export class SetGameScoreComponent implements OnInit {
+
 
   public slideData:slideData[];
   constructor(private todoServcie:TodoService,private router:Router) { }
@@ -56,7 +57,7 @@ export class HomeComponent implements OnInit {
     }
     //this.member_id = '1';
     this.todoServcie.getHandicap_member_id(this.member_id).subscribe((response)=>{
-      debugger;
+      //debugger;
       this.users = response.data;
     });
     this.todoServcie.getCredit(this.member_id).subscribe((response)=>{
@@ -65,6 +66,15 @@ export class HomeComponent implements OnInit {
     });
     
     
+  }
+
+  selectGame(event){
+    var hd_id = $(event.currentTarget).attr("id");
+    
+    this.todoServcie.setGameSelect(hd_id).subscribe((response)=>{
+      debugger;
+      
+    });
   }
 
   onValueChange(value: Date): void {
@@ -227,8 +237,7 @@ interface Handicap {
   hdd_m_id: string
   hdd_update_date: string
   time_start: string
-  game_close:any;
-  next_day:any;
+  hd_status_game:any;
 }
 
 interface User {

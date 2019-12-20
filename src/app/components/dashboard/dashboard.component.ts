@@ -105,6 +105,7 @@ export class DashboardComponent implements OnInit {
         labels: ['สูงต่ำชนะ','handicap ชนะ'],
         datasets: this.arrayData3
       };
+      
       this.optionsChart = {
         height:'300px',
         responsive: true,

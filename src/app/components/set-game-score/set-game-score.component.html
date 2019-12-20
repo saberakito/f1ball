@@ -1,0 +1,146 @@
+<div _ngcontent-jft-c2="" class="">
+  <div _ngcontent-jft-c2="" class="container">
+      <div _ngcontent-jft-c2="" class="col-md-12" style="padding-left:5px;padding-right:5px;">
+          <ng-container *ngIf="member_name!=''&&member_name!=null">
+                  <div _ngcontent-oyg-c3="" class="userArea">
+                      <div _ngcontent-oyg-c3="" class="logout">
+                          <div _ngcontent-oyg-c3="" (click)="logout()" class="btn btn-primary">LOGOUT</div>
+                      </div>
+                      <div _ngcontent-oyg-c3="" class="logout">
+                          <div _ngcontent-oyg-c3="" (click)="updateCredit(member_name,member_code_tran)" class="btn btn-warning">เติม Credit</div>
+                      </div>
+                      <div _ngcontent-oyg-c3="" class="credit"><i _ngcontent-oyg-c3="">CREDIT: {{credit_member}}</i></div>
+                      <div _ngcontent-oyg-c3="" class="name">{{member_name}}</div>
+                  </div>
+          </ng-container>
+
+
+          <table _ngcontent-jft-c2="" class="table table-striped tablespac" style="color: white;margin-top:10px;">
+              <thead _ngcontent-jft-c2="">
+                  <tr _ngcontent-jft-c2="" style="background: black;">
+                      <th _ngcontent-jft-c2="" class="hidden">
+                          เวลา
+                      </th>
+                      <th _ngcontent-jft-c2="">
+                          เจ้าบ้าน
+                      </th>
+                      <th _ngcontent-jft-c2="">
+                          ทีมเยือน
+                      </th>
+                      <!-- <th _ngcontent-jft-c2="" class="hidden"><img _ngcontent-jft-c2="" class="icon_header" src="assets/images/icon/time.png"></th>
+                      <th _ngcontent-jft-c2=""><img _ngcontent-jft-c2="" class="icon_header" src="assets/images/icon/home.png"></th>
+                      <th _ngcontent-jft-c2=""><img _ngcontent-jft-c2="" class="icon_header" src="assets/images/icon/away.png"></th> -->
+                  </tr>
+              </thead>
+              <tbody _ngcontent-jft-c2="" class="table_font_size" style="min-height: 62px;">
+
+
+                      <ng-container *ngFor="let han of users; index as  i; first as isFirst;let l = count">
+                          <!-- <ng-container *ngIf="i==0"> -->
+                                  <tr _ngcontent-osx-c2="" class="tab_table" style="min-height: 62px; line-height: 1;">
+                                          <td _ngcontent-osx-c2="" class="hidden" style="min-height: 62px;overflow: hidden;">{{han.hd_time}}</td>
+                                          <td _ngcontent-osx-c2="">
+                                              <ng-container *ngIf="han.hd_away_star=='1'">
+                                                  <span _ngcontent-osx-c2="" style="text-decoration: underline;">
+                                                      {{han.hd_home}}
+                                                  </span>
+                                              </ng-container>
+                                              <ng-container *ngIf="han.hd_away_star!='1'">
+                                                  {{han.hd_home}}
+                                              </ng-container>
+                                          </td>
+                                        <td _ngcontent-osx-c2=""> 
+                                              <ng-container *ngIf="han.hd_away_star=='1'">
+                                                  <span _ngcontent-osx-c2="" style="text-decoration: underline;">
+                                                      {{han.hd_away}}
+                                                  </span>
+                                              </ng-container>
+                                              <ng-container *ngIf="han.hd_away_star!='1'">
+                                                  {{han.hd_away}}
+                                              </ng-container>
+                                              
+                                          </td>
+                                      </tr>
+              
+                                      <tr _ngcontent-osx-c2="" style="background: #464646; color: white;">
+                                          <td _ngcontent-osx-c2="" colspan="1" style="border-top: 0;width: 300px;">Handicap</td>
+                                          <td _ngcontent-osx-c2="" colspan="2" style="border-top: 0;width: 100px;">HI/LO</td>
+                                      </tr>
+              
+                                      <tr _ngcontent-osx-c2="" style="background: #464646; color: white;">
+                                          <td _ngcontent-osx-c2="" class=" " colspan="1"> {{han.hd_handicap}} </td>
+                                          <td _ngcontent-osx-c2="" class=" " colspan="2"> {{han.hd_hl}} </td>
+                                      </tr>
+              
+                                    
+              
+                                      <tr _ngcontent-osx-c2="" style="background: #636363; color: white;">
+                                          <td _ngcontent-osx-c2="" class="classTD">
+                                              <img _ngcontent-osx-c2="" class="icon_loading" src="/assets/img/icon/08.gif" style="width:25px;height:25px;display:none;" id="{{han.hd_id}}_1">
+                                              
+                                              <ng-container *ngIf="han.hdd_display!='2'">
+                                                  <span _ngcontent-osx-c2="" class="icon_loading" id="{{han.hd_id}}_1">-</span>
+                                              </ng-container>
+                                              <ng-container *ngIf="han.hdd_display=='2'">
+                                                  <span _ngcontent-osx-c2="" class="result_score" style="color: black;" id="{{han.hd_id}}_1">
+                                                      <span _ngcontent-osx-c2="" style="color: rgb(98, 241, 98);"> 
+                                                              <ng-container *ngIf="han.hd_result_win=='1'">
+                                                                      {{han.hd_home}}
+                                                              </ng-container>
+                                                              <ng-container *ngIf="han.hd_result_win=='2'">
+                                                                      {{han.hd_away}}
+                                                              </ng-container>
+                                                      </span>
+                                                  </span>
+                                              </ng-container>
+                                              <span _ngcontent-osx-c2="" class="result_score" style="display:none; color: black;" id="{{han.hd_id}}_1">
+                                                      <span _ngcontent-osx-c2="" style="color: rgb(98, 241, 98);"> 
+                                                              <ng-container *ngIf="han.hd_result_win=='1'">
+                                                                      {{han.hd_home}}
+                                                              </ng-container>
+                                                              <ng-container *ngIf="han.hd_result_win=='2'">
+                                                                      {{han.hd_away}}
+                                                              </ng-container>
+                                                      </span>
+                                                  </span>
+                                              
+                                          </td>
+                                          <td _ngcontent-osx-c2="" class="classTD">
+                                              <img _ngcontent-osx-c2="" class="icon_loading" src="/assets/img/icon/08.gif" style="width:25px;height:25px;display:none;" id="{{han.hd_id}}_2">
+                                              <ng-container *ngIf="han.hdd_display!='2'">
+                                                  <span _ngcontent-osx-c2="" class="icon_loading" id="{{han.hd_id}}_2">-</span>
+                                              </ng-container>
+                                              <ng-container *ngIf="han.hdd_display=='2'">
+                                                      <span _ngcontent-osx-c2="" class="result_score" style=" color: white;" id="{{han.hd_id}}_2">{{han.hd_result_hl}}</span>
+                                              </ng-container>
+                                              <span _ngcontent-osx-c2="" class="result_score" style="display:none; color: white;" id="{{han.hd_id}}_2">{{han.hd_result_hl}}</span>
+                                          </td>
+                                          <td _ngcontent-osx-c2="" class="classTD">
+                                              <img _ngcontent-osx-c2="" class="icon_loading" src="/assets/img/icon/08.gif" style="width:25px;height:25px;display:none;" id="{{han.hd_id}}_3">
+                                              <ng-container *ngIf="han.hdd_display!='2'">
+                                                  <span _ngcontent-osx-c2="" class="icon_loading" id="{{han.hd_id}}_3">-</span>
+                                              </ng-container>
+                                              <ng-container *ngIf="han.hdd_display=='2'">
+                                                  <span _ngcontent-osx-c2="" class="result_score" style=" color: white;" id="{{han.hd_id}}_3">{{han.hd_result_home}} : {{han.hd_result_away}}</span>
+                                              </ng-container>
+                                              <span _ngcontent-osx-c2="" class="result_score" style="display:none; color: white;" id="{{han.hd_id}}_3">{{han.hd_result_home}} : {{han.hd_result_away}}</span>
+                                          </td>
+                                      </tr>
+                                      <tr _ngcontent-bka-c2="" style=" color: black;"><td _ngcontent-bka-c2="" class="classTD scan_td" colspan="3" style="border-top: 1;width: 300px; ">
+                                        <ng-container *ngIf="han.hd_status_game=='2'">
+                                            <input type="checkbox" checked (click)="selectGame($event)" value="1" id="{{han.hd_id}}"> <label style="color: white;" for="{{han.hd_id}}">  เลือกคู่นี้</label> 
+                                        </ng-container>
+                                         <ng-container *ngIf="han.hd_status_game=='1'">
+                                            <input type="checkbox" (click)="selectGame($event)" value="1" id="{{han.hd_id}}"> <label style="color: white;" for="{{han.hd_id}}">  เลือกคู่นี้</label> 
+                                        </ng-container>
+                                        
+                                      </tr>
+                          </ng-container>
+                      <!-- </ng-container> -->
+
+                      
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
